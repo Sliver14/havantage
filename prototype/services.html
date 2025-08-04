@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Havantage Technologies - Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: #1a3c6d;
+            color: white;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-size: 1rem;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Active Navigation Tab */
+        .nav-links a.active {
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid #ffd700;
+        }
+
+        .nav-links a.active:hover {
+            background: rgba(255, 215, 0, 0.3);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hover Preview Styles */
+        .nav-preview {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            color: #333;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            width: 300px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            margin-top: 0.5rem;
+        }
+
+        .nav-preview::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid white;
+        }
+
+        .nav-links a:hover .nav-preview {
+            opacity: 1;
+            visibility: visible;
+            margin-top: 0.5rem;
+        }
+
+        .preview-title {
+            font-weight: bold;
+            color: #1a3c6d;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .preview-content {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #666;
+        }
+
+        .preview-highlight {
+            color: #1a3c6d;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            padding: 2rem;
+        }
+
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #1a3c6d;
+        }
+
+        .section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #1a3c6d;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #1a3c6d;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card h4 {
+            color: #1a3c6d;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .service-details {
+            background: #1a3c6d;
+            color: white;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+        }
+
+        .service-details h3 {
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-details ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .service-details li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-details li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 2rem 0;
+        }
+
+        .footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 768px) {
+            /* Navigation Mobile */
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: #1a3c6d;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 2rem 0;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links a {
+                margin: 0.5rem 0;
+                padding: 1rem;
+                width: 100%;
+                display: block;
+            }
+
+            /* Hide hover previews on mobile */
+            .nav-preview {
+                display: none;
+            }
+
+            /* Hamburger Animation */
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            /* Main Content Mobile */
+            .main-content {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .section h3 {
+                font-size: 1.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .service-details {
+                padding: 2rem 1rem;
+                margin: 2rem 0;
+            }
+
+            /* Footer Mobile */
+            .footer div {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 1.5rem 1rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .section h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1>Havantage</h1>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home
+                    <div class="nav-preview">
+                        <div class="preview-title">Welcome to Havantage</div>
+                        <div class="preview-content">
+                            Powering growth with premium technology services and high-impact skills. 
+                            <span class="preview-highlight">Core offerings</span> include Tech Talent Development, 
+                            QA as a Service, and Strategic Advisory.
+                        </div>
+                    </div>
+                </a>
+                <a href="about.html">About
+                    <div class="nav-preview">
+                        <div class="preview-title">About Havantage Technologies</div>
+                        <div class="preview-content">
+                            Premium technology partner committed to helping people and businesses succeed. 
+                            <span class="preview-highlight">Mission:</span> We help businesses perform and professionals grow.
+                        </div>
+                    </div>
+                </a>
+                <a href="services.html" class="active">Services
+                    <div class="nav-preview">
+                        <div class="preview-title">Our Services</div>
+                        <div class="preview-content">
+                            <span class="preview-highlight">QA as a Service</span> • Project Management • Security Testing • 
+                            Strategic Advisory • Talent Placement • AI Governance
+                        </div>
+                    </div>
+                </a>
+                <a href="training.html">Training
+                    <div class="nav-preview">
+                        <div class="preview-title">Training Programs</div>
+                        <div class="preview-content">
+                            <span class="preview-highlight">10-week programs:</span> Project Management • Scrum Master • 
+                            QA Testing • Leadership Readiness • Real-world projects & mentorship
+                        </div>
+                    </div>
+                </a>
+                <a href="contact.html">Contact
+                    <div class="nav-preview">
+                        <div class="preview-title">Get in Touch</div>
+                        <div class="preview-content">
+                            Ready to support your next project or training goal. 
+                            <span class="preview-highlight">Email:</span> hello@havantage.com • 
+                            <span class="preview-highlight">Location:</span> Lagos and Remote
+                        </div>
+                    </div>
+                </a>
+                <a href="faq.html">FAQ
+                    <div class="nav-preview">
+                        <div class="preview-title">Frequently Asked Questions</div>
+                        <div class="preview-content">
+                            Find answers about training programs, services, and getting started. 
+                            <span class="preview-highlight">Beginner-friendly</span> • Online sessions • 
+                            Job placement support
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <section class="section">
+            <h2>Our Services</h2>
+            <div class="services-intro">
+                <p style="font-size: 1.2rem;">We support teams, train professionals, and deliver critical solutions that move businesses forward. Every service is designed to solve real problems and drive lasting results.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Explore Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Project Management as a Service</h3>
+                    <p>End-to-end project oversight with clarity and accountability.</p>
+                    <a href="#pm-service" class="cta-button">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <h3>Software Quality Assurance as a Service</h3>
+                    <p>Deliver better products by catching issues before your users do.</p>
+                    <a href="#qa-service" class="cta-button">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <h3>Application and Web Security Testing</h3>
+                    <p>Protect your digital assets with expert-led vulnerability testing.</p>
+                    <a href="#security-service" class="cta-button">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <h3>Tech Talent Development (12-week tracks)</h3>
+                    <p>Hands-on, expert-led training programs focused on real-world skills.</p>
+                    <a href="training.html" class="cta-button">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <h3>Strategic Advisory Services</h3>
+                    <p>Guiding your technology strategy to drive sustainable growth.</p>
+                    <a href="#advisory-service" class="cta-button">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <h3>Talent Placement and Recruitment</h3>
+                    <p>Connecting high-performing professionals with companies that value delivery.</p>
+                    <a href="#talent-service" class="cta-button">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Software Quality Assurance Service -->
+        <section id="qa-service" class="section">
+            <div class="service-detail">
+                <h3>Software Quality Assurance as a Service</h3>
+                
+                <h4>What We Do</h4>
+                <p>We help you deliver better products by catching issues before your users do. Our QA support is hands-on, structured, and focused on what matters; making sure your product actually works the way it should.</p>
+                
+                <h4>What We Offer</h4>
+                <ul>
+                    <li>Functional, regression, and exploratory testing</li>
+                    <li>Test planning and documentation</li>
+                    <li>Bug tracking, triage, and detailed reporting</li>
+                    <li>Cross-platform and device testing</li>
+                    <li>Manual and automated QA workflows</li>
+                </ul>
+                
+                <h4>Ideal For</h4>
+                <p>Startups, agencies, platforms, and product teams that need confidence before release</p>
+                
+                <h4>Why It Matters</h4>
+                <ul>
+                    <li>Faster release cycles</li>
+                    <li>Fewer bugs in production</li>
+                    <li>Happier customers</li>
+                    <li>Lower support costs</li>
+                </ul>
+                
+                <h4>Why Havantage</h4>
+                <p>We think like users and test like professionals. Every test adds value, and delivers real results.</p>
+                
+                <a href="contact.html" class="cta-button">Request a Free QA Review</a>
+            </div>
+        </section>
+
+        <!-- Project Management Service -->
+        <section id="pm-service" class="section">
+            <div class="service-detail">
+                <h3>Project Management as a Service</h3>
+                
+                <h4>What We Do</h4>
+                <p>We help you run projects the way they're meant to be run — with clarity, accountability, and calm. Whether you're understaffed, overwhelmed, or scaling fast, we bring in the structure and leadership to get things done.</p>
+                
+                <h4>What We Offer</h4>
+                <ul>
+                    <li>End-to-end project oversight</li>
+                    <li>Agile and hybrid frameworks</li>
+                    <li>Timeline, risk, and budget management</li>
+                    <li>Stakeholder communication and reporting</li>
+                    <li>Delivery process design</li>
+                </ul>
+                
+                <h4>Ideal For</h4>
+                <ul>
+                    <li>Founders juggling too much</li>
+                    <li>Delivery teams with no PM</li>
+                    <li>Agencies who need better client coordination</li>
+                    <li>Fintech and product teams shipping fast</li>
+                </ul>
+                
+                <h4>Why It Matters</h4>
+                <ul>
+                    <li>On-time, on-budget delivery</li>
+                    <li>Fewer delays and bottlenecks</li>
+                    <li>Better team alignment</li>
+                    <li>Stronger client and partner confidence</li>
+                </ul>
+                
+                <h4>Why Havantage</h4>
+                <p>We don't just manage projects. We lead them to success.</p>
+                
+                <a href="contact.html" class="cta-button">Book a Project Consultation</a>
+            </div>
+        </section>
+
+        <!-- Security Testing Service -->
+        <section id="security-service" class="section">
+            <div class="service-detail">
+                <h3>App and Web Security Testing</h3>
+                
+                <h4>What We Do</h4>
+                <p>We help protect your digital assets with expert-led vulnerability testing. We test your applications for real-world risks; the kind that hurt users, damage brands, and cost businesses more than just money.</p>
+                
+                <h4>What We Offer</h4>
+                <ul>
+                    <li>Website and web app penetration testing</li>
+                    <li>Mobile app security testing</li>
+                    <li>OWASP standards and risk reports with real explanations</li>
+                    <li>Actionable steps to fix what we find</li>
+                    <li>A team that talks to your developers, not just sends PDFs</li>
+                </ul>
+                
+                <h4>How We Work</h4>
+                <p>We simulate real attacks. We look for what others miss. And we give you context — not just red flags, but what they actually mean for your product and your business.</p>
+                
+                <h4>Ideal For</h4>
+                <ul>
+                    <li>Platforms that handle sensitive user data</li>
+                    <li>Companies preparing for compliance or audits</li>
+                    <li>Teams that want to reduce risk before launch</li>
+                    <li>Founders who care about trust and safety</li>
+                </ul>
+                
+                <h4>Why It Matters</h4>
+                <p>Security isn't a checklist. It's protection for everything you've built. One breach can set you back months. We help you stay ahead.</p>
+                <ul>
+                    <li>Find and fix vulnerabilities</li>
+                    <li>Improve security posture</li>
+                    <li>Meet compliance requirements</li>
+                    <li>Reduce business risk</li>
+                </ul>
+                
+                <a href="contact.html" class="cta-button">Schedule a Security Assessment</a>
+            </div>
+        </section>
+
+        <!-- Strategic Advisory Service -->
+        <section id="advisory-service" class="section">
+            <div class="service-detail">
+                <h3>Strategic Advisory Services</h3>
+                
+                <h4>What We Do</h4>
+                <p>We help leaders and teams make better decisions about how they build, lead, and deliver. Whether you're scaling, stuck, or just tired of guessing, we give you a clear outside perspective backed by experience.</p>
+                
+                <h4>What We Offer</h4>
+                <ul>
+                    <li>Delivery and process audits</li>
+                    <li>QA or PM setup and improvement</li>
+                    <li>Leadership coaching for new managers</li>
+                    <li>Support for team restructuring, workflow changes, or tool shifts</li>
+                </ul>
+                
+                <h4>How We Work</h4>
+                <p>We don't just tell you what's wrong. We help you fix it. We work with your team, not around them. Our goal is to help you build something that works and lasts.</p>
+                
+                <h4>Ideal For</h4>
+                <ul>
+                    <li>Founders or CTOs scaling delivery</li>
+                    <li>Managers looking to improve team performance</li>
+                    <li>Ops and HR leads setting up new departments</li>
+                    <li>Startups that need help structuring their workflows</li>
+                </ul>
+                
+                <h4>Why It Matters</h4>
+                <p>Sometimes the hardest thing to see is what's right in front of you. A trusted outside view can save you time, money, and months of trial and error.</p>
+                <ul>
+                    <li>Clear direction</li>
+                    <li>Fewer mistakes</li>
+                    <li>Stronger systems</li>
+                    <li>Real accountability</li>
+                </ul>
+                
+                <a href="contact.html" class="cta-button">Let's talk about what's not working, working and what could work better.</a>
+            </div>
+        </section>
+
+        <!-- Talent Placement Service -->
+        <section id="talent-service" class="section">
+            <div class="service-detail">
+                <h3>Talent Placement and Recruitment</h3>
+                
+                <h4>What We Do</h4>
+                <p>We connect high-performing professionals with companies that value delivery, work-culture, and growth.</p>
+                
+                <h4>What We Offer</h4>
+                <ul>
+                    <li>Pre-vetted talent in QA, PM, Security, and Tech Support</li>
+                    <li>Role alignment and team fit checks</li>
+                    <li>Candidates trained in real-world tools and workflows</li>
+                    <li>A partner who understands both sides, company and candidate</li>
+                    <li>Ongoing placement support</li>
+                </ul>
+                
+                <h4>How We Work</h4>
+                <p>We train. We vet. We recommend. We only send candidates we trust because your team is your delivery engine.</p>
+                
+                <h4>For Companies</h4>
+                <p>You get people who are skilled, ready, and serious about the work. No long lists. Just good fits.</p>
+                
+                <h4>For Candidates</h4>
+                <p>You get placed where your skills are needed, your work is valued, and your growth matters.</p>
+                
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="contact.html" class="cta-button">Submit Hiring Needs</a>
+                    <a href="contact.html" class="cta-button">Join the Talent Network</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h3>Havantage Technologies</h3>
+                    <p>Premium technology partner committed to helping people and businesses succeed.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <p><a href="about.html">About Us</a></p>
+                    <p><a href="services.html">Services</a></p>
+                    <p><a href="training.html">Training</a></p>
+                    <p><a href="contact.html">Contact</a></p>
+                </div>
+                <div>
+                    <h4>Contact Info</h4>
+                    <p>Email: hello@havantage.com</p>
+                    <p>Location: Lagos and Remote</p>
+                </div>
+                <div>
+                    <h4>Follow Us</h4>
+                    <p><a href="#">LinkedIn</a></p>
+                    <p><a href="#">Instagram</a></p>
+                    <p><a href="#">X (Twitter)</a></p>
+                </div>
+            </div>
+            <div style="text-align: center; border-top: 1px solid #ccc; padding-top: 1rem;">
+                <p>&copy; 2025 Havantage Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+    </script>
+</body>
+</html> 

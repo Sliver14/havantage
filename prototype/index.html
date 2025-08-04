@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Havantage Technologies - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(26, 60, 109, 0);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            color: #333;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar.scrolled h1 {
+            color: #333;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-size: 1rem;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled .nav-links a {
+            color: #333;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar.scrolled .nav-links a:hover {
+            color: #1a3c6d;
+            background: rgba(26, 60, 109, 0.1);
+        }
+
+        /* Active Navigation Tab */
+        .nav-links a.active {
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid #ffd700;
+        }
+
+        .navbar.scrolled .nav-links a.active {
+            color: #1a3c6d;
+            background: rgba(26, 60, 109, 0.2);
+            border: 2px solid #1a3c6d;
+        }
+
+        .nav-links a.active:hover {
+            background: rgba(255, 215, 0, 0.3);
+        }
+
+        .navbar.scrolled .nav-links a.active:hover {
+            background: rgba(26, 60, 109, 0.3);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        .navbar.scrolled .hamburger span {
+            background: #333;
+        }
+
+        /* Hover Preview Styles */
+        .nav-preview {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            color: #333;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            width: 300px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            margin-top: 0.5rem;
+        }
+
+        .nav-preview::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid white;
+        }
+
+        .nav-links a:hover .nav-preview {
+            opacity: 1;
+            visibility: visible;
+            margin-top: 0.5rem;
+        }
+
+        .preview-title {
+            font-weight: bold;
+            color: #1a3c6d;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .preview-content {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #666;
+        }
+
+        .preview-highlight {
+            color: #1a3c6d;
+            font-weight: 500;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6));
+            z-index: 1;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background: #000;
+        }
+
+        .hero-video.active {
+            opacity: 1;
+        }
+
+        .hero-video:not(.active) {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Fallback background for when videos don't load */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://source.unsplash.com/random/1600x900/?technology');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+        /* When videos are hidden, show fallback more prominently */
+        .hero.video-fallback::after {
+            z-index: 0;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background: #ffd700;
+            color: #1a3c6d;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: #e6c200;
+        }
+
+        /* Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .offerings-grid, .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        /* Core Offerings Icon */
+        .core-offer-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 1rem auto;
+            display: block;
+        }
+
+        /* Client Highlights Styles */
+        .client-highlights {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(26, 60, 109, 0.1);
+        }
+
+        .client-highlights h3 {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1a3c6d;
+            font-size: 2.2rem;
+            position: relative;
+        }
+
+        .client-highlights h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #ffd700, #1a3c6d);
+            border-radius: 2px;
+        }
+
+        /* Client Logos */
+        .client-logos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+            align-items: center;
+        }
+
+        .logo-item {
+            text-align: center;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .logo-placeholder {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 2rem 1.5rem;
+            font-weight: bold;
+            color: #6c757d;
+            font-size: 1rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .logo-placeholder:hover {
+            border-color: #1a3c6d;
+            color: #1a3c6d;
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(26, 60, 109, 0.15);
+            background: linear-gradient(145deg, #ffffff, #f0f8ff);
+        }
+
+        .logo-placeholder:hover::before {
+            left: 100%;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(145deg, #ffffff, #fafbfc);
+            border: 1px solid #e9ecef;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: rgba(26, 60, 109, 0.1);
+            font-family: serif;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            border-color: #1a3c6d;
+            background: linear-gradient(145deg, #ffffff, #f0f8ff);
+        }
+
+        .testimonial-content p {
+            font-style: italic;
+            color: #444;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            font-size: 1.15rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            border-top: 2px solid #e9ecef;
+            padding-top: 1.5rem;
+            position: relative;
+        }
+
+        .testimonial-author::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, #ffd700, #1a3c6d);
+            border-radius: 1px;
+        }
+
+        .testimonial-author strong {
+            display: block;
+            color: #1a3c6d;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .testimonial-author span {
+            color: #6c757d;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .newsletter-section {
+            background: #1a3c6d;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 2rem auto;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .newsletter-form button {
+            background: #ffd700;
+            color: #1a3c6d;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .newsletter-form button:hover {
+            background: #e6c200;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 2rem 0;
+        }
+
+        .footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 768px) {
+            /* Navigation Mobile */
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: rgba(26, 60, 109, 0);
+                backdrop-filter: blur(15px);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.1);
+                padding: 2rem 0;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links a {
+                margin: 0.5rem 0;
+                padding: 1rem;
+                width: 100%;
+                display: block;
+            }
+
+            /* Hide hover previews on mobile */
+            .nav-preview {
+                display: none;
+            }
+
+            /* Hamburger Animation */
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            /* Hero Section Mobile */
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            /* Video background mobile optimization */
+            .hero-video {
+                object-position: center;
+            }
+
+            /* Sections Mobile */
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .offerings-grid, .values-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            /* Newsletter Form Mobile */
+            .newsletter-form {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .newsletter-form input,
+            .newsletter-form button {
+                width: 100%;
+            }
+
+            /* Footer Mobile */
+            .footer div {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            /* Client Highlights Mobile */
+            .client-highlights {
+                padding: 2rem;
+                border-radius: 15px;
+            }
+
+            .client-highlights h3 {
+                font-size: 1.8rem;
+            }
+
+            .client-logos {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .logo-placeholder {
+                padding: 1.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .testimonials {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .testimonial-card {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .hero-content {
+                padding: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-content {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 1.5rem 1rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            /* Client Highlights Small Mobile */
+            .client-highlights {
+                padding: 1.5rem;
+                border-radius: 10px;
+            }
+
+            .client-highlights h3 {
+                font-size: 1.5rem;
+            }
+
+            .client-logos {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .logo-placeholder {
+                padding: 1rem;
+                font-size: 0.8rem;
+            }
+
+            .testimonials {
+                gap: 1.5rem;
+            }
+
+            .testimonial-card {
+                padding: 1.5rem;
+            }
+
+            .testimonial-content p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1>Havantage</h1>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="active">Home
+                    <div class="nav-preview">
+                        <div class="preview-title">Welcome to Havantage</div>
+                        <div class="preview-content">
+                            Powering growth with premium technology services and high-impact skills. 
+                            <span class="preview-highlight">Core offerings</span> include Tech Talent Development, 
+                            QA as a Service, and Strategic Advisory.
+                        </div>
+                    </div>
+                </a>
+                <a href="about.html">About
+                    <div class="nav-preview">
+                        <div class="preview-title">About Havantage Technologies</div>
+                        <div class="preview-content">
+                            Premium technology partner committed to helping people and businesses succeed. 
+                            <span class="preview-highlight">Mission:</span> We help businesses perform and professionals grow.
+                        </div>
+                    </div>
+                </a>
+                <a href="services.html">Services
+                    <div class="nav-preview">
+                        <div class="preview-title">Our Services</div>
+                        <div class="preview-content">
+                            <span class="preview-highlight">QA as a Service</span> • Project Management • Security Testing • 
+                            Strategic Advisory • Talent Placement • AI Governance
+                        </div>
+                    </div>
+                </a>
+                <a href="training.html">Training
+                    <div class="nav-preview">
+                        <div class="preview-title">Training Programs</div>
+                        <div class="preview-content">
+                            <span class="preview-highlight">10-week programs:</span> Project Management • Scrum Master • 
+                            QA Testing • Leadership Readiness • Real-world projects & mentorship
+                        </div>
+                    </div>
+                </a>
+                <a href="contact.html">Contact
+                    <div class="nav-preview">
+                        <div class="preview-title">Get in Touch</div>
+                        <div class="preview-content">
+                            Ready to support your next project or training goal. 
+                            <span class="preview-highlight">Email:</span> hello@havantage.com • 
+                            <span class="preview-highlight">Location:</span> Lagos and Remote
+                        </div>
+                    </div>
+                </a>
+                <a href="faq.html">FAQ
+                    <div class="nav-preview">
+                        <div class="preview-title">Frequently Asked Questions</div>
+                        <div class="preview-content">
+                            Find answers about training programs, services, and getting started. 
+                            <span class="preview-highlight">Beginner-friendly</span> • Online sessions • 
+                            Job placement support
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Video Backgrounds - Replace with your own office/tech team videos for production -->
+        <video class="hero-video active" autoplay muted loop playsinline>
+            <!-- Source: https://www.pexels.com/video/people-working-in-the-office-3182763/ -->
+            <source src="https://player.vimeo.com/external/3182763.sd.mp4?s=6e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e&profile_id=164&oauth2_token_id=57447761" type="video/mp4">
+        </video>
+        <video class="hero-video" autoplay muted loop playsinline>
+            <!-- Source: https://www.pexels.com/video/woman-in-white-shirt-using-macbook-1181352/ -->
+            <source src="https://player.vimeo.com/external/1181352.sd.mp4?s=6e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e&profile_id=164&oauth2_token_id=57447761" type="video/mp4">
+        </video>
+        <video class="hero-video" autoplay muted loop playsinline>
+            <!-- Source: https://coverr.co/videos/office-teamwork-B1Q1Q1Q1Q1 -->
+            <source src="https://cdn.coverr.co/videos/coverr-office-teamwork-1579864680105?token=eyJhbGciOiJIUzI1NiJ9.eyJrZXkiOiJjb3ZlcnItb2ZmaWNlLXRlYW13b3JrLTE1Nzk4NjQ2ODAxMDUubXA0In0.6e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e" type="video/mp4">
+        </video>
+        
+        <div class="hero-content">
+            <h1>Powering growth with premium technology services and high-impact skills</h1>
+            <p>Your advantage starts here. Opportunity isn't the problem. Readiness is. We help people grow and businesses perform across the tech world.</p>
+            <a href="services.html" class="cta-button">Explore Our Services</a>
+        </div>
+    </section>
+
+    <!-- Core Offerings -->
+    <section class="section">
+        <h2>Core Offerings</h2>
+        <div class="offerings-grid">
+            <div class="card">
+                <img class="core-offer-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/academia.svg" alt="Tech Talent Development" />
+                <h3>Tech Talent Development</h3>
+                <p>Building skills and capabilities to empower individuals and teams.</p>
+            </div>
+            <div class="card">
+                <img class="core-offer-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/workplace.svg" alt="Talent Placement Support" />
+                <h3>Talent Placement Support</h3>
+                <p>Connecting businesses with trusted, high-impact tech professionals.</p>
+            </div>
+            <div class="card">
+                <img class="core-offer-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/ai.svg" alt="AI Governance" />
+                <h3>AI Governance</h3>
+                <p>Offering both expert AI governance services and comprehensive training programs to ensure responsible, compliant AI adoption.</p>
+            </div>
+            <div class="card">
+                <img class="core-offer-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/selenium.svg" alt="Quality Assurance as a Service" />
+                <h3>Quality Assurance as a Service (QAaaS)</h3>
+                <p>Delivering scalable, on-demand quality assurance expertise.</p>
+            </div>
+            <div class="card">
+                <img class="core-offer-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/strategy.svg" alt="Strategic Advisory" />
+                <h3>Strategic Advisory</h3>
+                <p>Guiding your technology strategy to drive sustainable growth.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Havantage -->
+    <section class="section">
+        <h2>Why Choose Havantage</h2>
+        <div class="values-grid">
+            <div class="card">
+                <h3>Real Results</h3>
+                <p>Built on real results and trusted partnerships.</p>
+            </div>
+            <div class="card">
+                <h3>Clarity & Confidence</h3>
+                <p>Designed for people who demand clarity and confidence.</p>
+            </div>
+            <div class="card">
+                <h3>Proven Systems</h3>
+                <p>Proven systems that unlock better delivery, stronger teams, and lasting value.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who We Work With -->
+    <section class="section" style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); border-radius: 20px; margin: 2rem auto; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);">
+        <h2 style="background: linear-gradient(135deg, #1a3c6d, #2c5aa0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem;">Who We Work With</h2>
+        <p style="text-align: center; font-size: 1.3rem; margin-bottom: 3rem; color: #555; font-weight: 300; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+            Startups, growing companies, tech teams, and people who want more than just credentials, they want <strong style="color: #1a3c6d;">results</strong>.
+        </p>
+        
+        <!-- Client Highlights -->
+        <div class="client-highlights">
+            <h3>Client Highlights</h3>
+            
+            <!-- Client Logos -->
+            <div class="client-logos">
+                <div class="logo-item">
+                    <div class="logo-placeholder">TechCorp</div>
+                </div>
+                <div class="logo-item">
+                    <div class="logo-placeholder">InnovateLabs</div>
+                </div>
+                <div class="logo-item">
+                    <div class="logo-placeholder">DataFlow</div>
+                </div>
+                <div class="logo-item">
+                    <div class="logo-placeholder">SecureNet</div>
+                </div>
+                <div class="logo-item">
+                    <div class="logo-placeholder">CloudScale</div>
+                </div>
+                <div class="logo-item">
+                    <div class="logo-placeholder">FutureTech</div>
+                </div>
+            </div>
+            
+            <!-- Client Testimonials -->
+            <div class="testimonials">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Havantage transformed our QA process. Their expertise helped us reduce bugs by 60% and improve our release cycle significantly."</p>
+                        <div class="testimonial-author">
+                            <strong>Sarah Johnson</strong>
+                            <span>CTO, TechCorp</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The training program was exactly what our team needed. We now have certified project managers who deliver results consistently."</p>
+                        <div class="testimonial-author">
+                            <strong>Michael Chen</strong>
+                            <span>VP Engineering, InnovateLabs</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Strategic advisory from Havantage helped us scale our operations efficiently. Their insights were invaluable to our growth."</p>
+                        <div class="testimonial-author">
+                            <strong>David Rodriguez</strong>
+                            <span>CEO, DataFlow</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section class="newsletter-section">
+        <h2>Get Early Access</h2>
+        <p>Get early access to insights, training updates, and career openings.</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h3>Havantage Technologies</h3>
+                    <p>Premium technology partner committed to helping people and businesses succeed.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <p><a href="about.html">About Us</a></p>
+                    <p><a href="services.html">Services</a></p>
+                    <p><a href="training.html">Training</a></p>
+                    <p><a href="contact.html">Contact</a></p>
+                </div>
+                <div>
+                    <h4>Contact Info</h4>
+                    <p>Email: hello@havantage.com</p>
+                    <p>Location: Lagos and Remote</p>
+                </div>
+                <div>
+                    <h4>Follow Us</h4>
+                    <p><a href="#">LinkedIn</a></p>
+                    <p><a href="#">Instagram</a></p>
+                    <p><a href="#">X (Twitter)</a></p>
+                </div>
+            </div>
+            <div style="text-align: center; border-top: 1px solid #ccc; padding-top: 1rem;">
+                <p>&copy; 2025 Havantage Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Newsletter form handling
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for subscribing! We\'ll keep you updated with the latest insights.');
+            this.reset();
+        });
+
+        // Hamburger menu functionality
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        // Hero video cycling functionality
+        // Note: Current videos are placeholders. Replace with actual business/tech themed videos
+        function initHeroVideos() {
+            const videos = document.querySelectorAll('.hero-video');
+            let currentVideoIndex = 0;
+            const videoChangeInterval = 8000; // Change video every 8 seconds
+            let loadedVideos = 0;
+            let videoCycleInterval;
+
+            // Function to change video
+            function changeVideo() {
+                // Remove active class from current video
+                videos[currentVideoIndex].classList.remove('active');
+                
+                // Pause current video
+                videos[currentVideoIndex].pause();
+                
+                // Move to next video
+                currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+                
+                // Add active class to new video and play it
+                videos[currentVideoIndex].classList.add('active');
+                videos[currentVideoIndex].play().catch(e => {
+                    console.log('Video play failed:', e);
+                    // If video fails to play, try the next one
+                    setTimeout(changeVideo, 1000);
+                });
+            }
+
+            // Load and prepare all videos
+            videos.forEach((video, index) => {
+                // Set initial state
+                if (index === 0) {
+                    video.classList.add('active');
+                } else {
+                    video.classList.remove('active');
+                    video.pause();
+                }
+
+                // Event listeners for video loading
+                video.addEventListener('loadeddata', function() {
+                    loadedVideos++;
+                    console.log(`Video ${index + 1} loaded successfully`);
+                    
+                    // If this is the first video, start playing
+                    if (index === 0) {
+                        video.play().catch(e => {
+                            console.log('First video play failed:', e);
+                            // If first video fails, try the next one
+                            setTimeout(() => {
+                                currentVideoIndex = 1;
+                                videos[1].classList.add('active');
+                                videos[1].play().catch(e => console.log('Second video also failed:', e));
+                            }, 1000);
+                        });
+                    }
+                });
+                
+                video.addEventListener('error', function() {
+                    console.log(`Video ${index + 1} failed to load`);
+                    // If this is the first video and it fails, try the next one
+                    if (index === 0 && loadedVideos === 0) {
+                        setTimeout(() => {
+                            currentVideoIndex = 1;
+                            videos[1].classList.add('active');
+                            videos[1].play().catch(e => console.log('Second video also failed:', e));
+                        }, 1000);
+                    }
+                });
+
+                // Ensure video is muted and looped
+                video.muted = true;
+                video.loop = true;
+            });
+
+            // Start the video cycling after a delay to ensure first video is loaded
+            setTimeout(() => {
+                videoCycleInterval = setInterval(changeVideo, videoChangeInterval);
+            }, 3000);
+
+            // Fallback: if no videos load, show background image
+            setTimeout(() => {
+                if (loadedVideos === 0) {
+                    console.log('No videos loaded, showing background image');
+                    videos.forEach(video => {
+                        video.style.display = 'none';
+                    });
+                    // Add class to show fallback background more prominently
+                    document.querySelector('.hero').classList.add('video-fallback');
+                }
+            }, 5000);
+        }
+
+        // Initialize hero videos when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initHeroVideos();
+            
+            // Handle navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 10) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

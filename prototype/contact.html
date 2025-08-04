@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Havantage Technologies - Contact</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: #1a3c6d;
+            color: white;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-size: 1rem;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Active Navigation Tab */
+        .nav-links a.active {
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid #ffd700;
+        }
+
+        .nav-links a.active:hover {
+            background: rgba(255, 215, 0, 0.3);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hover Preview Styles */
+        .nav-preview {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            color: #333;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            width: 300px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            margin-top: 0.5rem;
+        }
+
+        .nav-preview::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid white;
+        }
+
+        .nav-links a:hover .nav-preview {
+            opacity: 1;
+            visibility: visible;
+            margin-top: 0.5rem;
+        }
+
+        .preview-title {
+            font-weight: bold;
+            color: #1a3c6d;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .preview-content {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #666;
+        }
+
+        .preview-highlight {
+            color: #1a3c6d;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            padding: 2rem;
+        }
+
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #1a3c6d;
+        }
+
+        .section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #1a3c6d;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-form {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .contact-form h3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #1a3c6d;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: #1a3c6d;
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .submit-btn:hover {
+            background: #0f2a4a;
+        }
+
+        .contact-info {
+            background: #1a3c6d;
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .contact-info h3 {
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-item i {
+            margin-right: 1rem;
+            color: #ffd700;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 2rem 0;
+        }
+
+        .footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 768px) {
+            /* Navigation Mobile */
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: #1a3c6d;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 2rem 0;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links a {
+                margin: 0.5rem 0;
+                padding: 1rem;
+                width: 100%;
+                display: block;
+            }
+
+            /* Hide hover previews on mobile */
+            .nav-preview {
+                display: none;
+            }
+
+            /* Hamburger Animation */
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            /* Main Content Mobile */
+            .main-content {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .section h3 {
+                font-size: 1.5rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            /* Footer Mobile */
+            .footer div {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 1.5rem 1rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .section h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1>Havantage</h1>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home
+                    <div class="nav-preview">
+                        <div class="preview-title">Welcome to Havantage</div>
+                        <div class="preview-content">
+                            Powering growth with premium technology services and high-impact skills. 
+                            <span class="preview-highlight">Core offerings</span> include Tech Talent Development, 
+                            QA as a Service, and Strategic Advisory.
+                        </div>
+                    </div>
+                </a>
+                <a href="about.html">About
+                    <div class="nav-preview">
+                        <div class="preview-title">About Havantage Technologies</div>
+                        <div class="preview-content">
+                            Premium technology partner committed to helping people and businesses succeed. 
+                            <span class="preview-highlight">Mission:</span> We help businesses perform and professionals grow.
+                        </div>
+                    </div>
+                </a>
+                <a href="services.html">Services
+                    <div class="nav-preview">
+                        <div class="preview-title">Our Services</div>
+                        <div class="preview-content">
+                            <span class="preview-highlight">QA as a Service</span> • Project Management • Security Testing • 
+                            Strategic Advisory • Talent Placement • AI Governance
+                        </div>
+                    </div>
+                </a>
+                <a href="training.html">Training
+                    <div class="nav-preview">
+                        <div class="preview-title">Training Programs</div>
+                        <div class="preview-content">
+                            <span class="preview-highlight">10-week programs:</span> Project Management • Scrum Master • 
+                            QA Testing • Leadership Readiness • Real-world projects & mentorship
+                        </div>
+                    </div>
+                </a>
+                <a href="contact.html" class="active">Contact
+                    <div class="nav-preview">
+                        <div class="preview-title">Get in Touch</div>
+                        <div class="preview-content">
+                            Ready to support your next project or training goal. 
+                            <span class="preview-highlight">Email:</span> hello@havantage.com • 
+                            <span class="preview-highlight">Location:</span> Lagos and Remote
+                        </div>
+                    </div>
+                </a>
+                <a href="faq.html">FAQ
+                    <div class="nav-preview">
+                        <div class="preview-title">Frequently Asked Questions</div>
+                        <div class="preview-content">
+                            Find answers about training programs, services, and getting started. 
+                            <span class="preview-highlight">Beginner-friendly</span> • Online sessions • 
+                            Job placement support
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <section class="section">
+            <h2>Let's Connect</h2>
+            <div class="contact-intro">
+                <p style="font-size: 1.2rem;">We're ready to support your next project, training goal, or team expansion.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="contactForm">
+                        <input type="text" placeholder="Name" required>
+                        <input type="email" placeholder="Email" required>
+                        <input type="tel" placeholder="Phone (optional)">
+                        <select required>
+                            <option value="">Type of Inquiry</option>
+                            <option value="training">Training</option>
+                            <option value="services">Services</option>
+                            <option value="hiring">Hiring</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <textarea placeholder="Message" rows="5" required></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <h4>Email</h4>
+                        <p>hello@havantage.com</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h4>Location</h4>
+                        <p>Lagos and Remote</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <h4>Social Media</h4>
+                        <div class="social-links">
+                            <a href="#">LinkedIn</a>
+                            <a href="#">Instagram</a>
+                            <a href="#">X (Twitter)</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <h4>Response Time</h4>
+                        <p>We typically respond within 24 hours during business days.</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-business-time"></i>
+                        <h4>Office Hours</h4>
+                        <p>Monday - Friday: 9:00 AM - 6:00 PM (WAT)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h3>Havantage Technologies</h3>
+                    <p>Premium technology partner committed to helping people and businesses succeed.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <p><a href="about.html">About Us</a></p>
+                    <p><a href="services.html">Services</a></p>
+                    <p><a href="training.html">Training</a></p>
+                    <p><a href="contact.html">Contact</a></p>
+                </div>
+                <div>
+                    <h4>Contact Info</h4>
+                    <p>Email: hello@havantage.com</p>
+                    <p>Location: Lagos and Remote</p>
+                </div>
+                <div>
+                    <h4>Follow Us</h4>
+                    <p><a href="#">LinkedIn</a></p>
+                    <p><a href="#">Instagram</a></p>
+                    <p><a href="#">X (Twitter)</a></p>
+                </div>
+            </div>
+            <div style="text-align: center; border-top: 1px solid #ccc; padding-top: 1rem;">
+                <p>&copy; 2025 Havantage Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Hamburger menu functionality
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+    </script>
+</body>
+</html> 

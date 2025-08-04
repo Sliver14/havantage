@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Havantage Technologies - Training</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: #1a3c6d;
+            color: white;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-size: 1rem;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Active Navigation Tab */
+        .nav-links a.active {
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid #ffd700;
+        }
+
+        .nav-links a.active:hover {
+            background: rgba(255, 215, 0, 0.3);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hover Preview Styles */
+        .nav-preview {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            color: #333;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            width: 300px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            margin-top: 0.5rem;
+        }
+
+        .nav-preview::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid white;
+        }
+
+        .nav-links a:hover .nav-preview {
+            opacity: 1;
+            visibility: visible;
+            margin-top: 0.5rem;
+        }
+
+        .preview-title {
+            font-weight: bold;
+            color: #1a3c6d;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .preview-content {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #666;
+        }
+
+        .preview-highlight {
+            color: #1a3c6d;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            padding: 2rem;
+        }
+
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #1a3c6d;
+        }
+
+        .section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #1a3c6d;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .training-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .training-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #1a3c6d;
+            transition: transform 0.3s ease;
+        }
+
+        .training-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .training-card h4 {
+            color: #1a3c6d;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .training-details {
+            background: #1a3c6d;
+            color: white;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+        }
+
+        .training-details h3 {
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+        }
+
+        .training-details ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .training-details li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .training-details li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .cta-button {
+            background: #ffd700;
+            color: #1a3c6d;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            background: #e6c200;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 2rem 0;
+        }
+
+        .footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 768px) {
+            /* Navigation Mobile */
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: #1a3c6d;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 2rem 0;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links a {
+                margin: 0.5rem 0;
+                padding: 1rem;
+                width: 100%;
+                display: block;
+            }
+
+            /* Hide hover previews on mobile */
+            .nav-preview {
+                display: none;
+            }
+
+            /* Hamburger Animation */
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            /* Main Content Mobile */
+            .main-content {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .section h3 {
+                font-size: 1.5rem;
+            }
+
+            .training-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .training-details {
+                padding: 2rem 1rem;
+                margin: 2rem 0;
+            }
+
+            /* Footer Mobile */
+            .footer div {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 1.5rem 1rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .section h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1>Havantage</h1>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home
+                    <div class="nav-preview">
+                        <div class="preview-title">Welcome to Havantage</div>
+                        <div class="preview-content">
+                            Powering growth with premium technology services and high-impact skills. 
+                            <span class="preview-highlight">Core offerings</span> include Tech Talent Development, 
+                            QA as a Service, and Strategic Advisory.
+                        </div>
+                    </div>
+                </a>
+                <a href="about.html">About
+                    <div class="nav-preview">
+                        <div class="preview-title">About Havantage Technologies</div>
+                        <div class="preview-content">
+                            Premium technology partner committed to helping people and businesses succeed. 
+                            <span class="preview-highlight">Mission:</span> We help businesses perform and professionals grow.
+                        </div>
+                    </div>
+                </a>
+                <a href="services.html">Services
+                    <div class="nav-preview">
+                        <div class="preview-title">Our Services</div>
+                        <div class="preview-content">
+                            <span class="preview-highlight">QA as a Service</span> • Project Management • Security Testing • 
+                            Strategic Advisory • Talent Placement • AI Governance
+                        </div>
+                    </div>
+                </a>
+                <a href="training.html" class="active">Training
+                    <div class="nav-preview">
+                        <div class="preview-title">Training Programs</div>
+                        <div class="preview-content">
+                            <span class="preview-highlight">10-week programs:</span> Project Management • Scrum Master • 
+                            QA Testing • Leadership Readiness • Real-world projects & mentorship
+                        </div>
+                    </div>
+                </a>
+                <a href="contact.html">Contact
+                    <div class="nav-preview">
+                        <div class="preview-title">Get in Touch</div>
+                        <div class="preview-content">
+                            Ready to support your next project or training goal. 
+                            <span class="preview-highlight">Email:</span> hello@havantage.com • 
+                            <span class="preview-highlight">Location:</span> Lagos and Remote
+                        </div>
+                    </div>
+                </a>
+                <a href="faq.html">FAQ
+                    <div class="nav-preview">
+                        <div class="preview-title">Frequently Asked Questions</div>
+                        <div class="preview-content">
+                            Find answers about training programs, services, and getting started. 
+                            <span class="preview-highlight">Beginner-friendly</span> • Online sessions • 
+                            Job placement support
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <section class="section">
+            <h2>Tech Skill Development</h2>
+            <div class="training-intro">
+                <p style="font-size: 1.2rem;">We train people to perform, not just theory. Each track is hands-on, expert-led, and outcome-focused built around real industry standards.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Featured Programs</h2>
+            <div class="training-grid">
+                <div class="training-card">
+                    <h3>📦 Project Management Training (10 Weeks)</h3>
+                    <p>Learn to manage projects the way professionals do — with structure, clarity, and confidence.</p>
+                    <a href="#pm-training" class="cta-button">Learn More</a>
+                </div>
+                <div class="training-card">
+                    <h3>🌀 Scrum Master Training (10 Weeks)</h3>
+                    <p>Get the real-world skills to lead agile teams — beyond the buzzwords.</p>
+                    <a href="#scrum-training" class="cta-button">Learn More</a>
+                </div>
+                <div class="training-card">
+                    <h3>🧪 Software Quality Assurance Training (10 Weeks)</h3>
+                    <p>Learn how to test real products, find real bugs, and deliver real value.</p>
+                    <a href="#qa-training" class="cta-button">Learn More</a>
+                </div>
+                <div class="training-card">
+                    <h3>🚀 Preparing to Lead: Management Readiness Training (10 Weeks)</h3>
+                    <p>For professionals stepping into leadership — or those already there, ready to lead better.</p>
+                    <a href="#leadership-training" class="cta-button">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Management Training -->
+        <section id="pm-training" class="section">
+            <div class="training-detail">
+                <h3>📦 Project Management Training (10 Weeks)</h3>
+                <p>Learn to manage projects the way professionals do — with structure, clarity, and confidence.</p>
+                
+                <h4>Who It's For</h4>
+                <ul>
+                    <li>People switching into tech or delivery roles</li>
+                    <li>Team leads who need better control of scope and timelines</li>
+                    <li>Anyone tired of "just winging it" on projects</li>
+                </ul>
+                
+                <h4>What You'll Learn</h4>
+                <ul>
+                    <li>How to plan, track, and deliver real projects</li>
+                    <li>How to manage tasks, deadlines, risks, and teams</li>
+                    <li>Tools like Trello, Jira, ClickUp, Google Sheets</li>
+                    <li>Communication habits that drive accountability</li>
+                </ul>
+                
+                <h4>What Makes It Different</h4>
+                <ul>
+                    <li>Real project scenarios from 3 industries (web, fintech, finance)</li>
+                    <li>Weekly assignments, not just lectures</li>
+                    <li>Group check-ins, feedback, and expert-led sessions</li>
+                    <li>Access to templates, docs, and real tools</li>
+                    <li>Certificate and mentorship after completion</li>
+                </ul>
+                
+                <h4>Outcomes</h4>
+                <ul>
+                    <li>Clarity on how to run projects from start to finish</li>
+                    <li>Confidence to take on delivery roles</li>
+                    <li>A real portfolio you can speak to in interviews</li>
+                </ul>
+                
+                <a href="contact.html" class="cta-button">Apply to join the next cohort and start managing with clarity.</a>
+            </div>
+        </section>
+
+        <!-- Scrum Master Training -->
+        <section id="scrum-training" class="section">
+            <div class="training-detail">
+                <h3>🌀 Scrum Master Training (10 Weeks)</h3>
+                <p>Get the real-world skills to lead agile teams — beyond the buzzwords.</p>
+                
+                <h4>Who It's For</h4>
+                <ul>
+                    <li>Professionals who want to work in Agile environments</li>
+                    <li>Aspiring Scrum Masters and Agile Coaches</li>
+                    <li>Team leads struggling with unclear sprints and delivery chaos</li>
+                </ul>
+                
+                <h4>What You'll Learn</h4>
+                <ul>
+                    <li>Core Scrum principles and real implementation</li>
+                    <li>Running standups, planning, reviews, and retros</li>
+                    <li>Managing sprint velocity, blockers, and team alignment</li>
+                    <li>Tools like Jira, Miro, Confluence</li>
+                </ul>
+                
+                <h4>What Makes It Different</h4>
+                <ul>
+                    <li>Real team simulation</li>
+                    <li>Weekly case studies and coaching</li>
+                    <li>Agile mindset applied to actual project timelines</li>
+                    <li>Guest sessions with working Scrum Masters</li>
+                    <li>Interview readiness and support</li>
+                </ul>
+                
+                <h4>Outcomes</h4>
+                <ul>
+                    <li>Confidence to lead or contribute in Agile teams</li>
+                    <li>Real examples and stories you can use in your job search</li>
+                    <li>Templates and habits that actually help delivery</li>
+                </ul>
+                
+                <a href="contact.html" class="cta-button">Start your path to becoming a trusted Scrum Master.</a>
+            </div>
+        </section>
+
+        <!-- QA Training -->
+        <section id="qa-training" class="section">
+            <div class="training-detail">
+                <h3>🧪 Software Quality Assurance Training (10 Weeks)</h3>
+                <p>Learn how to test real products, find real bugs, and deliver real value.</p>
+                
+                <h4>Who It's For</h4>
+                <ul>
+                    <li>Anyone looking to start a career in QA</li>
+                    <li>Professionals in support or admin roles wanting to switch</li>
+                    <li>People who love catching issues and making things better</li>
+                </ul>
+                
+                <h4>What You'll Learn</h4>
+                <ul>
+                    <li>Functional testing, exploratory testing, regression</li>
+                    <li>Test case creation, bug reporting, bug lifecycle</li>
+                    <li>Tools like TestRail, Postman, Jira, browser dev tools</li>
+                    <li>Thinking like a user, documenting like a pro</li>
+                </ul>
+                
+                <h4>What Makes It Different</h4>
+                <ul>
+                    <li>You'll test actual products</li>
+                    <li>You'll log real bugs and track them through fixes</li>
+                    <li>You'll learn to work with devs and PMs, not just test in isolation</li>
+                    <li>Optional internship and job readiness support</li>
+                    <li>Guest QA leads share real testing war stories</li>
+                </ul>
+                
+                <h4>Outcomes</h4>
+                <ul>
+                    <li>The ability to step into a QA role, confidently</li>
+                    <li>Projects and proof of work for your portfolio</li>
+                    <li>Experience using industry tools from Day 1</li>
+                </ul>
+                
+                <a href="contact.html" class="cta-button">Join the next cohort and start testing like a pro.</a>
+            </div>
+        </section>
+
+        <!-- Leadership Training -->
+        <section id="leadership-training" class="section">
+            <div class="training-detail">
+                <h3>🚀 Preparing to Lead: Management Readiness Training (10 Weeks)</h3>
+                <p>For professionals stepping into leadership — or those already there, ready to lead better.</p>
+                
+                <h4>Who It's For</h4>
+                <ul>
+                    <li>Senior staff or mid-level professionals stepping into team lead or manager roles</li>
+                    <li>New managers who want to lead with purpose, not just pressure</li>
+                    <li>Anyone who wants to understand what leadership actually demands</li>
+                </ul>
+                
+                <h4>What You'll Learn</h4>
+                <ul>
+                    <li>How to lead people, not just tasks</li>
+                    <li>Setting clear expectations, giving feedback, creating alignment</li>
+                    <li>Leading meetings, owning results, solving people problems</li>
+                    <li>How to think about value, numbers, and strategic work</li>
+                    <li>How AI is shaping modern leadership decisions</li>
+                </ul>
+                
+                <h4>What Makes It Different</h4>
+                <ul>
+                    <li>No fluff. Just real conversations, real frameworks, and real guidance</li>
+                    <li>Top leaders share their hard lessons</li>
+                    <li>Role-playing, strategy maps, and 1:1 mentorship</li>
+                    <li>Final project: build a practical leadership game plan for your current or future role</li>
+                </ul>
+                
+                <h4>Outcomes</h4>
+                <ul>
+                    <li>Clarity on your leadership style</li>
+                    <li>Confidence in conversations that matter</li>
+                    <li>A leadership mindset backed by systems</li>
+                </ul>
+                
+                <a href="contact.html" class="cta-button">If you're ready to lead — for real — this is where to start.</a>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Program Features</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h4>Real Projects</h4>
+                    <p>From finance, fintech, and web agency sectors</p>
+                </div>
+                <div class="feature-item">
+                    <h4>AI-Integrated Learning</h4>
+                    <p>Modern tools and approaches</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Mentorship</h4>
+                    <p>Personal feedback and guidance</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Templates & Tools</h4>
+                    <p>Real-world resources you can use</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Internship Pathways</h4>
+                    <p>Practical experience opportunities</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Guest Sessions</h4>
+                    <p>Industry experts share insights</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Certification</h4>
+                    <p>Certificate of completion</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Ideal For</h2>
+            <div class="training-grid">
+                <div class="training-card">
+                    <h3>Career Switchers</h3>
+                    <p>Looking to transition into tech roles with practical skills</p>
+                </div>
+                <div class="training-card">
+                    <h3>Working Professionals</h3>
+                    <p>Wanting to enhance their current skill set</p>
+                </div>
+                <div class="training-card">
+                    <h3>Teams</h3>
+                    <p>That need better delivery skills and processes</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="contact.html" class="cta-button">Apply to join the next cohort and start building skills that scale.</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h3>Havantage Technologies</h3>
+                    <p>Premium technology partner committed to helping people and businesses succeed.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <p><a href="about.html">About Us</a></p>
+                    <p><a href="services.html">Services</a></p>
+                    <p><a href="training.html">Training</a></p>
+                    <p><a href="contact.html">Contact</a></p>
+                </div>
+                <div>
+                    <h4>Contact Info</h4>
+                    <p>Email: hello@havantage.com</p>
+                    <p>Location: Lagos and Remote</p>
+                </div>
+                <div>
+                    <h4>Follow Us</h4>
+                    <p><a href="#">LinkedIn</a></p>
+                    <p><a href="#">Instagram</a></p>
+                    <p><a href="#">X (Twitter)</a></p>
+                </div>
+            </div>
+            <div style="text-align: center; border-top: 1px solid #ccc; padding-top: 1rem;">
+                <p>&copy; 2025 Havantage Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger menu functionality
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+    </script>
+</body>
+</html> 
