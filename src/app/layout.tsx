@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Havantage Technologies",
   description: "Empowering businesses with innovative technology solutions",
-  icon: "/logo3.jpeg",
+  icons: "/logo3.jpeg",
 };
 
 export default function RootLayout({
