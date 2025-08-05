@@ -2,42 +2,17 @@
 
 import { useState } from 'react';
 import Footer from '../components/Footer';
+import Link from 'next/link';
 
 export default function TrainingForm() {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    company: '',
-    position: '',
-    experience: '',
-    program: '',
-    goals: '',
-    timeline: '',
-    budget: '',
-    additionalInfo: ''
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
     
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 2000));
     
-    setIsSubmitting(false);
     setIsSubmitted(true);
   };
 
@@ -54,15 +29,15 @@ export default function TrainingForm() {
               </div>
               <h1 className="text-4xl font-bold text-gray-800 mb-4">Application Submitted!</h1>
               <p className="text-xl text-gray-600 mb-8">
-                Thank you for your interest in our premium training programs. We've received your application and will contact you within 24 hours to discuss your training needs.
+                Thank you for your interest in our premium training programs. We&apos;ve received your application and will contact you within 24 hours to discuss your training needs.
               </p>
               <div className="space-y-4">
-                <a href="/" className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
+                <Link href="/" className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
                   Return to Home
-                </a>
-                <a href="/training" className="inline-block border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors duration-300 ml-4">
+                </Link>
+                <Link href="/training" className="inline-block border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors duration-300 ml-4">
                   View Training Programs
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -120,8 +95,11 @@ export default function TrainingForm() {
           </div>
         </div>
       </section>
+      <section>
+        <form onSubmit={handleSubmit}></form>
+      </section>
 
       <Footer />
     </div>
   );
-} 
+}

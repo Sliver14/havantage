@@ -1,19 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Footer from '../../components/Footer';
+import Link from 'next/link';
 
 export default function QualityAssuranceService() {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <div className="min-h-screen">
@@ -96,9 +86,9 @@ export default function QualityAssuranceService() {
               </p>
 
               <div className="text-center">
-                <a href="/contact" className="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors duration-300">
+                <Link href="/contact" className="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors duration-300">
                   Request a Free QA Review
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -109,4 +99,4 @@ export default function QualityAssuranceService() {
       <Footer />
     </div>
   );
-} 
+}

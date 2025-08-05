@@ -1,24 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Footer from '../components/Footer';
+import Link from 'next/link';
 
 export default function Training() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
   return (
     <div className="min-h-screen">
@@ -64,9 +49,9 @@ export default function Training() {
                     Bug tracking and reporting
                   </li>
                 </ul>
-                <button className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-300">
+                <Link href="/training-form" className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-300">
                   Apply to Join the Next Cohort
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -97,9 +82,9 @@ export default function Training() {
                     Timeline and risk management
                   </li>
                 </ul>
-                <button className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition-colors duration-300">
+                <Link href="/training-form" className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition-colors duration-300">
                   Apply to Join the Next Cohort
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -130,9 +115,9 @@ export default function Training() {
                     Agile coaching techniques
                   </li>
                 </ul>
-                <button className="w-full bg-purple-600 text-white py-2 px-4 rounded hover:bg-purple-700 transition-colors duration-300">
+                <Link href="/training-form" className="w-full bg-purple-600 text-white py-2 px-4 rounded hover:bg-purple-700 transition-colors duration-300">
                   Apply to Join the Next Cohort
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -163,9 +148,9 @@ export default function Training() {
                     Strategic thinking
                   </li>
                 </ul>
-                <button className="w-full bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700 transition-colors duration-300">
+                <Link href="/training-form" className="w-full bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700 transition-colors duration-300">
                   Apply to Join the Next Cohort
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -276,9 +261,9 @@ export default function Training() {
               We bridge the gap between knowing the concept and doing the work. We focus on the doing.
             </p>
             <div className="mt-12">
-              <a href="/contact" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
+              <Link href="/contact" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
                 Apply to Join the Next Cohort
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -288,4 +273,4 @@ export default function Training() {
       <Footer />
     </div>
   );
-} 
+}

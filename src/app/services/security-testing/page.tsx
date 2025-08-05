@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Footer from '../../components/Footer';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function SecurityTestingService() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -25,11 +27,13 @@ export default function SecurityTestingService() {
       }`}>
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
-            <a href="/" className="flex items-center space-x-3">
-              <img
+            <Link href="/" className="flex items-center space-x-3">
+              <Image
                 src="/logo3.png"
                 alt="Havantage Logo"
-                className={`h-8 transition-opacity duration-300 ${
+                width={32}
+                height={32}
+                className={`h-8 w-auto transition-opacity duration-300 ${
                   isScrolled ? 'opacity-100' : 'opacity-100'
                 }`}
               />
@@ -38,16 +42,16 @@ export default function SecurityTestingService() {
               }`}>
                 Havantage
               </h1>
-            </a>
+            </Link>
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              <a href="/" className="hover:text-blue-300 transition-colors duration-300 font-medium">Home</a>
-              <a href="/about" className="hover:text-blue-300 transition-colors duration-300 font-medium">About</a>
-              <a href="/services" className="hover:text-blue-300 transition-colors duration-300 font-medium">Services</a>
-              <a href="/training" className="hover:text-blue-300 transition-colors duration-300 font-medium">Training</a>
-              <a href="/contact" className="hover:text-blue-300 transition-colors duration-300 font-medium">Contact</a>
-              <a href="/faq" className="hover:text-blue-300 transition-colors duration-300 font-medium">FAQ</a>
+              <Link href="/" className="hover:text-blue-300 transition-colors duration-300 font-medium">Home</Link>
+              <Link href="/about" className="hover:text-blue-300 transition-colors duration-300 font-medium">About</Link>
+              <Link href="/services" className="hover:text-blue-300 transition-colors duration-300 font-medium">Services</Link>
+              <Link href="/training" className="hover:text-blue-300 transition-colors duration-300 font-medium">Training</Link>
+              <Link href="/contact" className="hover:text-blue-300 transition-colors duration-300 font-medium">Contact</Link>
+              <Link href="/faq" className="hover:text-blue-300 transition-colors duration-300 font-medium">FAQ</Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -139,7 +143,7 @@ export default function SecurityTestingService() {
 
               <h3 className="text-2xl font-bold text-gray-800 mb-6">Why It Matters</h3>
               <p className="text-lg text-gray-600 mb-8">
-                Security isn't a checklist. It's protection for everything you've built. One breach can set you back months. We help you stay ahead.
+                Security isn&apos;t a checklist. It&apos;s protection for everything you&apos;ve built. One breach can set you back months. We help you stay ahead.
               </p>
               <ul className="text-lg text-gray-600 mb-8 space-y-3">
                 <li className="flex items-start">
@@ -161,9 +165,9 @@ export default function SecurityTestingService() {
               </ul>
 
               <div className="text-center">
-                <a href="/contact" className="bg-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors duration-300">
+                <Link href="/contact" className="bg-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors duration-300">
                   Schedule a Security Assessment
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -174,4 +178,4 @@ export default function SecurityTestingService() {
       <Footer />
     </div>
   );
-} 
+}

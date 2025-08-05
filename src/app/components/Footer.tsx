@@ -1,3 +1,6 @@
+import Image from 'next/image';
+import Link from 'next/link';
+
 export default function Footer() {
   return (
     <footer className="bg-blue-900 text-white">
@@ -7,7 +10,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-3 mb-4">
-              <img src="/logo3.png" alt="Havantage Logo" className="h-8" />
+              <Image src="/logo3.png" alt="Havantage Logo" width={32} height={32} className="h-8 w-auto" />
               <h3 className="text-2xl font-bold">Havantage</h3>
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
@@ -54,12 +57,12 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-6 text-white">Quick Links</h4>
             <div className="space-y-3">
-              <a href="/about" className="block text-gray-300 hover:text-white transition-colors duration-300">About Us</a>
-              <a href="/services" className="block text-gray-300 hover:text-white transition-colors duration-300">Services</a>
-              <a href="/training" className="block text-gray-300 hover:text-white transition-colors duration-300">Training</a>
-              <a href="/contact" className="block text-gray-300 hover:text-white transition-colors duration-300">Contact</a>
-              <a href="/faq" className="block text-gray-300 hover:text-white transition-colors duration-300">FAQ</a>
-              <a href="/training-form" className="block text-gray-300 hover:text-white transition-colors duration-300">Apply for Training</a>
+              <Link href="/about" className="block text-gray-300 hover:text-white transition-colors duration-300">About Us</Link>
+              <Link href="/services" className="block text-gray-300 hover:text-white transition-colors duration-300">Services</Link>
+              <Link href="/training" className="block text-gray-300 hover:text-white transition-colors duration-300">Training</Link>
+              <Link href="/contact" className="block text-gray-300 hover:text-white transition-colors duration-300">Contact</Link>
+              <Link href="/faq" className="block text-gray-300 hover:text-white transition-colors duration-300">FAQ</Link>
+              <Link href="/training-form" className="block text-gray-300 hover:text-white transition-colors duration-300">Apply for Training</Link>
             </div>
           </div>
 
@@ -67,11 +70,11 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-6 text-white">Explore</h4>
             <div className="space-y-3">
-              <a href="/services/project-management" className="block text-gray-300 hover:text-white transition-colors duration-300">Project Management</a>
-              <a href="/services/quality-assurance" className="block text-gray-300 hover:text-white transition-colors duration-300">Quality Assurance</a>
-              <a href="/services/security-testing" className="block text-gray-300 hover:text-white transition-colors duration-300">Security Testing</a>
-              <a href="/services/strategic-advisory" className="block text-gray-300 hover:text-white transition-colors duration-300">Strategic Advisory</a>
-              <a href="/services/talent-placement" className="block text-gray-300 hover:text-white transition-colors duration-300">Talent Placement</a>
+              <Link href="/services/project-management" className="block text-gray-300 hover:text-white transition-colors duration-300">Project Management</Link>
+              <Link href="/services/quality-assurance" className="block text-gray-300 hover:text-white transition-colors duration-300">Quality Assurance</Link>
+              <Link href="/services/security-testing" className="block text-gray-300 hover:text-white transition-colors duration-300">Security Testing</Link>
+              <Link href="/services/strategic-advisory" className="block text-gray-300 hover:text-white transition-colors duration-300">Strategic Advisory</Link>
+              <Link href="/services/talent-placement" className="block text-gray-300 hover:text-white transition-colors duration-300">Talent Placement</Link>
             </div>
           </div>
 
@@ -149,4 +152,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-} 
+}

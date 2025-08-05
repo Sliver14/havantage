@@ -1,24 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Footer from '../components/Footer';
+import Link from 'next/link';
 
 export default function Services() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
   return (
     <div className="min-h-screen">
@@ -44,7 +29,7 @@ export default function Services() {
           
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Project Management as a Service */}
-            <a href="/services/project-management" className="bg-white rounded-lg shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300 block hover:scale-105 transition-transform duration-300">
+            <Link href="/services/project-management" className="bg-white rounded-lg shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300 block hover:scale-105 transition-transform duration-300">
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
                 <svg className="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"/>
@@ -57,10 +42,10 @@ export default function Services() {
               <span className="text-blue-600 hover:text-blue-700 font-semibold">
                 Learn More →
               </span>
-            </a>
+            </Link>
 
             {/* Software Quality Assurance as a Service */}
-            <a href="/services/quality-assurance" className="bg-white rounded-lg shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300 block hover:scale-105 transition-transform duration-300">
+            <Link href="/services/quality-assurance" className="bg-white rounded-lg shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300 block hover:scale-105 transition-transform duration-300">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
                 <svg className="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
@@ -73,10 +58,10 @@ export default function Services() {
               <span className="text-green-600 hover:text-green-700 font-semibold">
                 Learn More →
               </span>
-            </a>
+            </Link>
 
             {/* Application and Web Security Testing */}
-            <a href="/services/security-testing" className="bg-white rounded-lg shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300 block hover:scale-105 transition-transform duration-300">
+            <Link href="/services/security-testing" className="bg-white rounded-lg shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300 block hover:scale-105 transition-transform duration-300">
               <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6">
                 <svg className="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"/>
@@ -89,7 +74,7 @@ export default function Services() {
               <span className="text-red-600 hover:text-red-700 font-semibold">
                 Learn More →
               </span>
-            </a>
+            </Link>
 
             {/* Tech Talent Development */}
             <div className="bg-white rounded-lg shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
@@ -102,13 +87,13 @@ export default function Services() {
               <p className="text-gray-600 mb-6">
                 Premium, practical training programs that build real-world delivery skills.
               </p>
-              <a href="/training" className="text-purple-600 hover:text-purple-700 font-semibold">
+              <Link href="/training" className="text-purple-600 hover:text-purple-700 font-semibold">
                 Learn More →
-              </a>
+              </Link>
             </div>
 
             {/* Strategic Advisory Services */}
-            <a href="/services/strategic-advisory" className="bg-white rounded-lg shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300 block hover:scale-105 transition-transform duration-300">
+            <Link href="/services/strategic-advisory" className="bg-white rounded-lg shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300 block hover:scale-105 transition-transform duration-300">
               <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-6">
                 <svg className="w-8 h-8 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"/>
@@ -121,10 +106,10 @@ export default function Services() {
               <span className="text-yellow-600 hover:text-yellow-700 font-semibold">
                 Learn More →
               </span>
-            </a>
+            </Link>
 
             {/* Talent Placement and Recruitment */}
-            <a href="/services/talent-placement" className="bg-white rounded-lg shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300 block hover:scale-105 transition-transform duration-300">
+            <Link href="/services/talent-placement" className="bg-white rounded-lg shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300 block hover:scale-105 transition-transform duration-300">
               <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
                 <svg className="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clipRule="evenodd"/>
@@ -138,7 +123,7 @@ export default function Services() {
               <span className="text-indigo-600 hover:text-indigo-700 font-semibold">
                 Learn More →
               </span>
-            </a>
+            </Link>
           </div>
           
           {/* <div className="text-center mt-16">
@@ -153,4 +138,4 @@ export default function Services() {
       <Footer />
     </div>
   );
-} 
+}

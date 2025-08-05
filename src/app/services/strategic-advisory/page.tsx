@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Footer from '../../components/Footer';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function StrategicAdvisoryService() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -25,11 +27,13 @@ export default function StrategicAdvisoryService() {
       }`}>
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
-            <a href="/" className="flex items-center space-x-3">
-              <img
+            <Link href="/" className="flex items-center space-x-3">
+              <Image
                 src="/logo3.png"
                 alt="Havantage Logo"
-                className={`h-8 transition-opacity duration-300 ${
+                width={32}
+                height={32}
+                className={`h-8 w-auto transition-opacity duration-300 ${
                   isScrolled ? 'opacity-100' : 'opacity-100'
                 }`}
               />
@@ -38,16 +42,16 @@ export default function StrategicAdvisoryService() {
               }`}>
                 Havantage
               </h1>
-            </a>
+            </Link>
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              <a href="/" className="hover:text-blue-300 transition-colors duration-300 font-medium">Home</a>
-              <a href="/about" className="hover:text-blue-300 transition-colors duration-300 font-medium">About</a>
-              <a href="/services" className="hover:text-blue-300 transition-colors duration-300 font-medium">Services</a>
-              <a href="/training" className="hover:text-blue-300 transition-colors duration-300 font-medium">Training</a>
-              <a href="/contact" className="hover:text-blue-300 transition-colors duration-300 font-medium">Contact</a>
-              <a href="/faq" className="hover:text-blue-300 transition-colors duration-300 font-medium">FAQ</a>
+              <Link href="/" className="hover:text-blue-300 transition-colors duration-300 font-medium">Home</Link>
+              <Link href="/about" className="hover:text-blue-300 transition-colors duration-300 font-medium">About</Link>
+              <Link href="/services" className="hover:text-blue-300 transition-colors duration-300 font-medium">Services</Link>
+              <Link href="/training" className="hover:text-blue-300 transition-colors duration-300 font-medium">Training</Link>
+              <Link href="/contact" className="hover:text-blue-300 transition-colors duration-300 font-medium">Contact</Link>
+              <Link href="/faq" className="hover:text-blue-300 transition-colors duration-300 font-medium">FAQ</Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -85,7 +89,7 @@ export default function StrategicAdvisoryService() {
             <div className="bg-white rounded-lg shadow-lg p-8 border border-gray-100">
               <h2 className="text-3xl font-bold text-gray-800 mb-8">What We Do</h2>
               <p className="text-lg text-gray-600 mb-8">
-                We help leaders and teams make better decisions about how they build, lead, and deliver. Whether you're scaling, stuck, or just tired of guessing, we give you a clear outside perspective backed by experience.
+                We help leaders and teams make better decisions about how they build, lead, and deliver. Whether you&apos;re scaling, stuck, or just tired of guessing, we give you a clear outside perspective backed by experience.
               </p>
 
               <h3 className="text-2xl font-bold text-gray-800 mb-6">What We Offer</h3>
@@ -110,7 +114,7 @@ export default function StrategicAdvisoryService() {
 
               <h3 className="text-2xl font-bold text-gray-800 mb-6">How We Work</h3>
               <p className="text-lg text-gray-600 mb-8">
-                We don't just tell you what's wrong. We help you fix it. We work with your team, not around them. Our goal is to help you build something that works and lasts.
+                We don&apos;t just tell you what&apos;s wrong. We help you fix it. We work with your team, not around them. Our goal is to help you build something that works and lasts.
               </p>
 
               <h3 className="text-2xl font-bold text-gray-800 mb-6">Ideal For</h3>
@@ -135,7 +139,7 @@ export default function StrategicAdvisoryService() {
 
               <h3 className="text-2xl font-bold text-gray-800 mb-6">Why It Matters</h3>
               <p className="text-lg text-gray-600 mb-8">
-                Sometimes the hardest thing to see is what's right in front of you. A trusted outside view can save you time, money, and months of trial and error.
+                Sometimes the hardest thing to see is what&apos;s right in front of you. A trusted outside view can save you time, money, and months of trial and error.
               </p>
               <ul className="text-lg text-gray-600 mb-8 space-y-3">
                 <li className="flex items-start">
@@ -157,9 +161,9 @@ export default function StrategicAdvisoryService() {
               </ul>
 
               <div className="text-center">
-                <a href="/contact" className="bg-yellow-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-yellow-700 transition-colors duration-300">
-                  Let's talk about what's not working, working and what could work better.
-                </a>
+                <Link href="/contact" className="bg-yellow-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-yellow-700 transition-colors duration-300">
+                  Let&apos;s talk about what&apos;s not working, working and what could work better.
+                </Link>
               </div>
             </div>
           </div>
@@ -170,4 +174,4 @@ export default function StrategicAdvisoryService() {
       <Footer />
     </div>
   );
-} 
+}

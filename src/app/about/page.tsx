@@ -1,25 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import Footer from '../components/Footer';
 
 export default function About() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
   return (
     <div className="min-h-screen">
       {/* <section className="bg-gray-50 py-10 border-b border-gray-200 mb-10">
@@ -40,16 +24,16 @@ export default function About() {
           
             <div className="prose prose-lg mx-auto text-gray-600 mb-16">
               <p className="text-xl leading-relaxed mb-8">
-                At Havantage Technologies, we believe readiness, not opportunity, is what separates potential from performance. That's why we focus on what truly moves people and businesses forward: skills, strategy, and trusted support.
+                At Havantage Technologies, we believe readiness, not opportunity, is what separates potential from performance. That&apos;s why we focus on what truly moves people and businesses forward: skills, strategy, and trusted support.
               </p>
               <p className="text-xl leading-relaxed mb-8">
-                We didn't start with a theory. We started with a challenge. Too many professionals had credentials but lacked confidence. Too many businesses had talent gaps and unclear standards for quality, security, and compliance. So we built Havantage to be the solution. A technology partner that develops capable people, strengthens tech teams, and raises the bar for governance and delivery.
+                We didn&apos;t start with a theory. We started with a challenge. Too many professionals had credentials but lacked confidence. Too many businesses had talent gaps and unclear standards for quality, security, and compliance. So we built Havantage to be the solution. A technology partner that develops capable people, strengthens tech teams, and raises the bar for governance and delivery.
               </p>
               <p className="text-xl leading-relaxed mb-8">
-                From premium training programs to talent placement, AI governance, and quality assurance, we equip our clients with what they actually need to grow. Clarity, competence, and results. Whether you're preparing to lead, hiring for impact, or improving how your organization operates, we help you meet the moment with confidence.
+                From premium training programs to talent placement, AI governance, and quality assurance, we equip our clients with what they actually need to grow. Clarity, competence, and results. Whether you&apos;re preparing to lead, hiring for impact, or improving how your organization operates, we help you meet the moment with confidence.
               </p>
               <p className="text-xl leading-relaxed">
-                We serve individuals ready to move beyond theory and organizations that expect more than just checkboxes. Our approach is high-touch, high-impact, and built for the pace of change in today's tech landscape.
+                We serve individuals ready to move beyond theory and organizations that expect more than just checkboxes. Our approach is high-touch, high-impact, and built for the pace of change in today&apos;s tech landscape.
               </p>
             </div>
 
@@ -79,7 +63,7 @@ export default function About() {
               <div className="bg-gray-50 rounded-lg p-8">
                 <h3 className="text-2xl font-bold text-gray-800 mb-4">Our Mission</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  To help professionals grow and businesses perform by delivering premium training, strategic advisory, and trusted talent in today's most critical tech domains.
+                  To help professionals grow and businesses perform by delivering premium training, strategic advisory, and trusted talent in today&apos;s most critical tech domains.
                 </p>
               </div>
               <div className="bg-gray-50 rounded-lg p-8">
@@ -130,7 +114,7 @@ export default function About() {
                 </div>
                 <div className="bg-white rounded-lg p-6 shadow-lg border border-gray-100">
                   <h3 className="text-lg font-bold text-blue-600 mb-2">E – Excellence</h3>
-                  <p className="text-gray-600">We don't settle for "good enough." We aim for great.</p>
+                  <p className="text-gray-600">We don&apos;t settle for &quot;good enough.&quot; We aim for great.</p>
                 </div>
               </div>
             </div>
@@ -143,18 +127,18 @@ export default function About() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-gray-800 mb-8">
-              Let's Move Forward Together
+              Let&apos;s Move Forward Together
             </h2>
             <p className="text-xl text-gray-600 mb-8">
-              Whether you're stepping into leadership, scaling your team, or setting a new standard in your industry, Havantage is here to help you do it with clarity and confidence.
+              Whether you&apos;re stepping into leadership, scaling your team, or setting a new standard in your industry, Havantage is here to help you do it with clarity and confidence.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/training" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
+              <Link href="/training" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
                 Apply for Premium Training
-              </a>
-              <a href="/services" className="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors duration-300">
+              </Link>
+              <Link href="/services" className="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors duration-300">
                 Hire Trusted Tech Talent
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -164,4 +148,4 @@ export default function About() {
       <Footer />
     </div>
   );
-} 
+}

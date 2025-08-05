@@ -1,19 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Footer from '../../components/Footer';
+import Link from 'next/link';
 
 export default function ProjectManagementService() {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <div className="min-h-screen">
@@ -38,7 +28,7 @@ export default function ProjectManagementService() {
             <div className="bg-white rounded-lg shadow-lg p-8 border border-gray-100">
               <h2 className="text-3xl font-bold text-gray-800 mb-8">What We Do</h2>
               <p className="text-lg text-gray-600 mb-8">
-                We help you run projects the way they're meant to be run — with clarity, accountability, and calm. Whether you're understaffed, overwhelmed, or scaling fast, we bring in the structure and leadership to get things done.
+                We help you run projects the way they&apos;re meant to be run — with clarity, accountability, and calm. Whether you&apos;re understaffed, overwhelmed, or scaling fast, we bring in the structure and leadership to get things done.
               </p>
 
               <h3 className="text-2xl font-bold text-gray-800 mb-6">What We Offer</h3>
@@ -107,13 +97,13 @@ export default function ProjectManagementService() {
 
               <h3 className="text-2xl font-bold text-gray-800 mb-6">Why Havantage</h3>
               <p className="text-lg text-gray-600 mb-8">
-                We don't just manage projects. We lead them to success.
+                We don&apos;t just manage projects. We lead them to success.
               </p>
 
               <div className="text-center">
-                <a href="/contact" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
+                <Link href="/contact" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
                   Book a Project Consultation
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -124,4 +114,4 @@ export default function ProjectManagementService() {
       <Footer />
     </div>
   );
-} 
+}

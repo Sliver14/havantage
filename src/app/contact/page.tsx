@@ -1,11 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Footer from '../components/Footer';
 
 export default function Contact() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -13,19 +11,6 @@ export default function Contact() {
     inquiryType: '',
     message: ''
   });
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -48,7 +33,7 @@ export default function Contact() {
       <section className="bg-gray-50 py-10 border-b border-gray-200 mb-10">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl font-bold text-center text-gray-800 mb-2">Contact Us</h1>
-          <p className="text-lg text-center text-gray-500">We're ready to support your next project, training goal, or team expansion.</p>
+          <p className="text-lg text-center text-gray-500">We&apos;re ready to support your next project, training goal, or team expansion.</p>
         </div>
       </section>
       {/* Contact Content */}
@@ -156,7 +141,7 @@ export default function Contact() {
               <div>
                 <h2 className="text-3xl font-bold text-gray-800 mb-6">Contact Information</h2>
                 <p className="text-lg text-gray-600 mb-8">
-                  We're here to help you succeed. Reach out to us through any of the following channels.
+                  We&apos;re here to help you succeed. Reach out to us through any of the following channels.
                 </p>
               </div>
 
@@ -220,4 +205,4 @@ export default function Contact() {
       <Footer />
     </div>
   );
-} 
+}

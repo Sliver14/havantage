@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -55,29 +57,31 @@ export default function Header() {
       <nav className="sticky top-0 w-full z-50 transition-all duration-300 bg-blue-800 text-white">
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
-            <a href="/" className="flex items-center space-x-3">
-              <img
+            <Link href="/" className="flex items-center space-x-3">
+              <Image
                 src="/logo3.png"
                 alt="Havantage Logo"
-                className={`h-8 transition-opacity duration-300 `}
+                width={32}
+                height={32}
+                className={`h-8 w-auto transition-opacity duration-300 `}
               />
               <h1 className={`text-2xl font-bold transition-colors duration-300 `}>
                 Havantage
               </h1>
-            </a>
+            </Link>
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <a href="/" className={`hover:text-blue-300 transition-colors duration-300 font-medium ${pathname === '/' ? 'border-b-4 border-white pb-1' : ''}`}>Home</a>
+              <Link href="/" className={`hover:text-blue-300 transition-colors duration-300 font-medium ${pathname === '/' ? 'border-b-4 border-white pb-1' : ''}`}>Home</Link>
               <span className="text-gray-400">|</span>
-              <a href="/about" className={`hover:text-blue-300 transition-colors duration-300 font-medium ${pathname.startsWith('/about') ? 'border-b-4 border-white pb-1' : ''}`}>About</a>
+              <Link href="/about" className={`hover:text-blue-300 transition-colors duration-300 font-medium ${pathname.startsWith('/about') ? 'border-b-4 border-white pb-1' : ''}`}>About</Link>
               <span className="text-gray-400">|</span>
-              <a href="/services" className={`hover:text-blue-300 transition-colors duration-300 font-medium ${pathname.startsWith('/services') ? 'border-b-4 border-white pb-1' : ''}`}>Services</a>
+              <Link href="/services" className={`hover:text-blue-300 transition-colors duration-300 font-medium ${pathname.startsWith('/services') ? 'border-b-4 border-white pb-1' : ''}`}>Services</Link>
               <span className="text-gray-400">|</span>
-              <a href="/training" className={`hover:text-blue-300 transition-colors duration-300 font-medium ${pathname.startsWith('/training') ? 'border-b-2 border-white pb-1' : ''}`}>Training</a>
+              <Link href="/training" className={`hover:text-blue-300 transition-colors duration-300 font-medium ${pathname.startsWith('/training') ? 'border-b-2 border-white pb-1' : ''}`}>Training</Link>
               <span className="text-gray-400">|</span>
-              <a href="/contact" className={`hover:text-blue-300 transition-colors duration-300 font-medium ${pathname.startsWith('/contact') ? 'border-b-4 border-white pb-1' : ''}`}>Contact</a>
+              <Link href="/contact" className={`hover:text-blue-300 transition-colors duration-300 font-medium ${pathname.startsWith('/contact') ? 'border-b-4 border-white pb-1' : ''}`}>Contact</Link>
               <span className="text-gray-400">|</span>
-              <a href="/faq" className={`hover:text-blue-300 transition-colors duration-300 font-medium ${pathname.startsWith('/faq') ? 'border-b-4 border-white pb-1' : ''}`}>FAQ</a>
+              <Link href="/faq" className={`hover:text-blue-300 transition-colors duration-300 font-medium ${pathname.startsWith('/faq') ? 'border-b-4 border-white pb-1' : ''}`}>FAQ</Link>
               <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors duration-300 ml-4">
                 Get Started
               </button>
@@ -95,12 +99,12 @@ export default function Header() {
           {/* Mobile Navigation */}
           <div className={`md:hidden transition-all duration-300 ${isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"} overflow-hidden`}>
             <div className="py-4 space-y-2">
-              <a href="/" className="block py-2 hover:text-blue-300 transition-colors duration-300">Home</a>
-              <a href="/about" className="block py-2 hover:text-blue-300 transition-colors duration-300">About</a>
-              <a href="/services" className="block py-2 hover:text-blue-300 transition-colors duration-300">Services</a>
-              <a href="/training" className="block py-2 hover:text-blue-300 transition-colors duration-300">Training</a>
-              <a href="/contact" className="block py-2 hover:text-blue-300 transition-colors duration-300">Contact</a>
-              <a href="/faq" className="block py-2 hover:text-blue-300 transition-colors duration-300">FAQ</a>
+              <Link href="/" className="block py-2 hover:text-blue-300 transition-colors duration-300">Home</Link>
+              <Link href="/about" className="block py-2 hover:text-blue-300 transition-colors duration-300">About</Link>
+              <Link href="/services" className="block py-2 hover:text-blue-300 transition-colors duration-300">Services</Link>
+              <Link href="/training" className="block py-2 hover:text-blue-300 transition-colors duration-300">Training</Link>
+              <Link href="/contact" className="block py-2 hover:text-blue-300 transition-colors duration-300">Contact</Link>
+              <Link href="/faq" className="block py-2 hover:text-blue-300 transition-colors duration-300">FAQ</Link>
             </div>
           </div>
         </div>

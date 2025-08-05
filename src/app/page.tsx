@@ -1,25 +1,20 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Footer from './components/Footer';
 import { ArrowRight, Award, Users, Target, TrendingUp } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
   const programs = [
     {
@@ -53,9 +48,11 @@ export default function Home() {
       {/* Hero Section now starts here, header is in layout */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Image Background */}
-        <img 
+        <Image 
           src="/hero-background.jpg" 
           alt="Hero background"
+          layout="fill"
+          objectFit="cover"
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
         
@@ -71,19 +68,15 @@ export default function Home() {
             Powering Growth with Premium Technology Services and High-Impact Skills
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto">
-            Your advantage starts here. Opportunity isn't the problem, readiness is. We empower people and businesses with the right skills, talent, and technology solutions to excel in a fast-evolving world.
+            Your advantage starts here. Opportunity isn&apos;t the problem, readiness is. We empower people and businesses with the right skills, talent, and technology solutions to excel in a fast-evolving world.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button onClick={() => {
-              window.location.href = '/training-form';
-            }} className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg cursor-pointer font-semibold transition-colors duration-300">
+            <Link href="/training-form" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg cursor-pointer font-semibold transition-colors duration-300">
               Apply for Premium Training
-            </button>
-            <button onClick={() => {
-              window.location.href = '/contact';
-            }} className="border-2 border-white text-white hover:bg-white hover:text-blue-800 px-8 py-3 cursor-pointer rounded-lg font-semibold transition-colors duration-300">
+            </Link>
+            <Link href="/contact" className="border-2 border-white text-white hover:bg-white hover:text-blue-800 px-8 py-3 cursor-pointer rounded-lg font-semibold transition-colors duration-300">
               Hire Trusted Tech Talent
-            </button>
+            </Link>
           </div>
         </div>
 
@@ -117,7 +110,7 @@ export default function Home() {
               What Makes Havantage Unique?
             </h2>
             <p className="text-xl text-gray-600 leading-relaxed">
-              We Empower Individuals with Premium Training and Career Support, while helping businesses build High-Impact Teams through Trusted Talent Placement, AI and IT governance, security, quality assurance, and strategic advisory. Our integrated approach prepares you and your organization to perform, innovate, and lead confidently in today's fast-evolving tech landscape.
+              We Empower Individuals with Premium Training and Career Support, while helping businesses build High-Impact Teams through Trusted Talent Placement, AI and IT governance, security, quality assurance, and strategic advisory. Our integrated approach prepares you and your organization to perform, innovate, and lead confidently in today&apos;s fast-evolving tech landscape.
             </p>
           </div>
         </div>
@@ -193,9 +186,9 @@ export default function Home() {
           </div>
           
           <div className="text-center mt-12">
-            <a href="/services" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
+            <Link href="/services" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
               Explore All Services
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -314,7 +307,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-white rounded-lg p-8 shadow-lg">
               <p className="text-gray-600 mb-4 italic">
-                "Havantage's training and placement support changed my career trajectory."
+                &quot;Havantage&apos;s training and placement support changed my career trajectory.&quot;
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
@@ -328,7 +321,7 @@ export default function Home() {
             </div>
             <div className="bg-white rounded-lg p-8 shadow-lg">
               <p className="text-gray-600 mb-4 italic">
-                "Their AI Governance program helped us navigate complex compliance challenges."
+                &quot;Their AI Governance program helped us navigate complex compliance challenges.&quot;
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
@@ -377,9 +370,9 @@ export default function Home() {
             </div>
           </div>
           <div className="text-center mt-12">
-            <a href="/contact" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
+            <Link href="/contact" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
               Get Your Free Consultation
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -392,12 +385,12 @@ export default function Home() {
               Contact & Support
             </h2>
             <p className="text-xl text-gray-600 mb-8">
-              Questions? Reach out, we're here to help you succeed.
+              Questions? Reach out, we&apos;re here to help you succeed.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <a href="/contact" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
+              <Link href="/contact" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
                 Contact Us
-              </a>
+              </Link>
               <button className="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors duration-300">
                 Live Chat
               </button>
