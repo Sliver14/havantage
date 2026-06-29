@@ -50,6 +50,6 @@ export default async function handler(req, res) {
     }
   } catch (error) {
     console.error("Consultation Form Error:", error);
-    return res.status(500).json({ error: "Internal server error." });
+    return res.status(500).json({ error: error.message || "Internal server error." });
   }
 }
