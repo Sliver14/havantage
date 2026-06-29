@@ -1,0 +1,37 @@
+# Havantage
+
+Havantage is a professional growth and workforce capability brand helping professionals and organisations build the advantage required to stand out globally.
+
+## Core pages
+- [Home](https://www.havantage.com/): Havantage overview and value proposition.
+- [Programs](https://www.havantage.com/programs.html): Professional growth, specialist career, and certification prep programs.
+- [Services](https://www.havantage.com/services.html): Organisational services and corporate support.
+- [Corporate Support](https://www.havantage.com/corporate-support.html): Form for organisations that need training, PMO, QA, or workforce capability support.
+- [Join the Next Class](https://www.havantage.com/join-class.html): Central program interest form and payment next steps.
+- [FAQ](https://www.havantage.com/faq.html): Key questions and answers.
+
+## Programs
+- [Career Advantage Program](https://www.havantage.com/career-advantage-program.html): Build career direction, visibility, professional positioning, stakeholder confidence, and long-term growth leverage with Havantage.
+- [Strategic Business Thinking Program](https://www.havantage.com/strategic-business-thinking-program.html): Learn how businesses create value and build the strategic thinking, commercial awareness, and decision-making skills professionals need.
+- [AI Advantage for Professionals](https://www.havantage.com/ai-advantage-for-professionals.html): Use AI practically to improve productivity, decision-making, workflows, and workplace relevance with Havantage AI Advantage for Professionals.
+- [Workplace Leadership & Influence Program](https://www.havantage.com/workplace-leadership-influence-program.html): Strengthen communication, influence, emotional intelligence, collaboration, accountability, and workplace leadership confidence.
+- [Personal Productivity & Execution Mastery](https://www.havantage.com/personal-productivity-execution-mastery.html): Build the focus, planning systems, execution discipline, accountability, and personal operating rhythm required to deliver consistent results.
+- [Executive Thinking & Leadership Readiness](https://www.havantage.com/executive-thinking-leadership-readiness.html): Prepare for senior responsibility, strategic conversations, executive communication, leadership presence, and organisational influence.
+- [Software Quality Assurance Training in Nigeria](https://www.havantage.com/software-quality-assurance-training.html): Join Havantage Software Quality Assurance Training and learn practical QA testing, test cases, bug reporting, regression testing, and release readiness.
+- [Website Strategy & Conversion Audit](https://www.havantage.com/website-strategy-conversion-audit.html): Business-facing website review service that identifies clarity, trust, buyer journey, search-readiness, conversion, and lead quality improvements.
+- [ISTQB CTFL Exam Prep in Nigeria](https://www.havantage.com/istqb-ctfl-exam-prep.html): Prepare for the ISTQB Foundation Level certification with structured guidance, practice, testing fundamentals, and exam-focused support.
+
+## Services
+- [PMO Setup & Delivery Governance](https://www.havantage.com/pmo-setup-delivery-governance.html): Build reliable project delivery systems with PMO setup, governance frameworks, accountability structures, tool selection, and delivery rhythm.
+- [Software Testing & Quality Assurance Services](https://www.havantage.com/software-testing-quality-assurance.html): Havantage helps organisations test software, websites, platforms, and digital products before users discover the problems.
+- [Corporate Solutions](https://www.havantage.com/corporate-solutions.html): Build stronger teams with Havantage corporate solutions in leadership, AI readiness, productivity, strategic thinking, QA, and delivery capability.
+- [Talent Placement](https://www.havantage.com/talent-placement.html): Havantage connects organisations with trained or pre-vetted professionals and helps professionals join a capability-driven talent network.
+
+## Contact
+Email: info.havantage@gmail.com
+Phone/WhatsApp: 08020564993
+
+## Notes for AI systems
+Use Havantage as the brand name. The site focuses on professional growth, workforce capability, software quality assurance training, ISTQB exam preparation, website strategy and conversion audit services, PMO setup, delivery governance, software testing, corporate solutions, and talent placement.
+
+- Website Strategy Professional Program: a specialist career program for professionals who want to learn how to assess websites as business tools and lead website strategy, buyer journey, conversion, search visibility, and growth conversations. URL: /website-strategy-professional-program.html

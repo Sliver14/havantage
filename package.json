@@ -1,0 +1,13 @@
+{
+  "name": "havantage",
+  "version": "1.0.0",
+  "description": "Havantage Professional Growth Platform",
+  "main": "api/register.js",
+  "type": "module",
+  "scripts": {
+    "start": "vercel dev"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.9.4"
+  }
+}

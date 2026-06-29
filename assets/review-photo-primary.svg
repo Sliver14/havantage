@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="760" viewBox="0 0 640 760" role="img" aria-label="Featured reviewer photo placeholder">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#F8EFE0"/><stop offset="1" stop-color="#D6AD5F"/></linearGradient><linearGradient id="nav" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071B35"/><stop offset="1" stop-color="#123966"/></linearGradient></defs>
+<rect width="640" height="760" rx="48" fill="url(#bg)"/>
+<circle cx="320" cy="250" r="118" fill="url(#nav)" opacity=".96"/>
+<path d="M138 670c18-132 90-210 182-210s164 78 182 210" fill="url(#nav)" opacity=".96"/>
+<path d="M0 660c120-70 240-90 360-60s210 7 280-55v215H0z" fill="#fff" opacity=".28"/>
+<circle cx="505" cy="105" r="46" fill="#fff" opacity=".25"/><circle cx="558" cy="165" r="18" fill="#071B35" opacity=".12"/>
+</svg>

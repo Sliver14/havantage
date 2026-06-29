@@ -1,0 +1,102 @@
+{
+  "brand": "Havantage",
+  "tagline": "Your advantage starts here",
+  "site_url_placeholder": "https://www.havantage.com",
+  "description": "Havantage is a professional growth and workforce capability brand helping professionals and organisations build the advantage required to stand out globally.",
+  "contact": {
+    "email": "info.havantage@gmail.com",
+    "phone": "08020564993"
+  },
+  "programs": [
+    {
+      "name": "Career Advantage Program",
+      "url": "https://www.havantage.com/career-advantage-program.html",
+      "description": "Build career direction, visibility, professional positioning, stakeholder confidence, and long-term growth leverage with Havantage.",
+      "price_ngn": "50000",
+      "duration": "P6W"
+    },
+    {
+      "name": "Strategic Business Thinking Program",
+      "url": "https://www.havantage.com/strategic-business-thinking-program.html",
+      "description": "Learn how businesses create value and build the strategic thinking, commercial awareness, and decision-making skills professionals need.",
+      "price_ngn": "50000",
+      "duration": "P6W"
+    },
+    {
+      "name": "AI Advantage for Professionals",
+      "url": "https://www.havantage.com/ai-advantage-for-professionals.html",
+      "description": "Use AI practically to improve productivity, decision-making, workflows, and workplace relevance with Havantage AI Advantage for Professionals.",
+      "price_ngn": "50000",
+      "duration": "P4W"
+    },
+    {
+      "name": "Workplace Leadership & Influence Program",
+      "url": "https://www.havantage.com/workplace-leadership-influence-program.html",
+      "description": "Strengthen communication, influence, emotional intelligence, collaboration, accountability, and workplace leadership confidence.",
+      "price_ngn": "50000",
+      "duration": "P6W"
+    },
+    {
+      "name": "Personal Productivity & Execution Mastery",
+      "url": "https://www.havantage.com/personal-productivity-execution-mastery.html",
+      "description": "Build the focus, planning systems, execution discipline, accountability, and personal operating rhythm required to deliver consistent results.",
+      "price_ngn": "50000",
+      "duration": "P4W"
+    },
+    {
+      "name": "Executive Thinking & Leadership Readiness",
+      "url": "https://www.havantage.com/executive-thinking-leadership-readiness.html",
+      "description": "Prepare for senior responsibility, strategic conversations, executive communication, leadership presence, and organisational influence.",
+      "price_ngn": "50000",
+      "duration": "P8W"
+    },
+    {
+      "name": "Software Quality Assurance Training in Nigeria",
+      "url": "https://www.havantage.com/software-quality-assurance-training.html",
+      "description": "Join Havantage Software Quality Assurance Training and learn practical QA testing, test cases, bug reporting, regression testing, and release readiness.",
+      "price_ngn": "50000",
+      "duration": "P12W"
+    },
+    {
+      "name": "ISTQB CTFL Exam Prep in Nigeria",
+      "url": "https://www.havantage.com/istqb-ctfl-exam-prep.html",
+      "description": "Prepare for the ISTQB Foundation Level certification with structured guidance, practice, testing fundamentals, and exam-focused support.",
+      "price_ngn": "50000",
+      "duration": "P4W"
+    }
+  ],
+  "services": [
+    {
+      "name": "PMO Setup & Delivery Governance",
+      "url": "https://www.havantage.com/pmo-setup-delivery-governance.html",
+      "description": "Build reliable project delivery systems with PMO setup, governance frameworks, accountability structures, tool selection, and delivery rhythm."
+    },
+    {
+      "name": "Software Testing & Quality Assurance Services",
+      "url": "https://www.havantage.com/software-testing-quality-assurance.html",
+      "description": "Havantage helps organisations test software, websites, platforms, and digital products before users discover the problems."
+    },
+    {
+      "name": "Website Strategy & Conversion Audit",
+      "url": "https://www.havantage.com/website-strategy-conversion-audit.html",
+      "description": "Business-facing website review service that identifies clarity, trust, buyer journey, search-readiness, conversion, lead quality, and revenue opportunity improvements."
+    },
+    {
+      "name": "Corporate Solutions",
+      "url": "https://www.havantage.com/corporate-solutions.html",
+      "description": "Build stronger teams with Havantage corporate solutions in leadership, AI readiness, productivity, strategic thinking, QA, and delivery capability."
+    },
+    {
+      "name": "Talent Placement",
+      "url": "https://www.havantage.com/talent-placement.html",
+      "description": "Havantage connects organisations with trained or pre-vetted professionals and helps professionals join a capability-driven talent network."
+    }
+  ],
+  "additional_pages": [
+    {
+      "title": "Website Strategy Professional Program",
+      "url": "/website-strategy-professional-program.html",
+      "type": "program"
+    }
+  ]
+}
