@@ -1,3 +1,119 @@
+// Inject custom Toast notification styles
+const toastStyles = `
+.havantage-toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+.havantage-toast {
+  pointer-events: auto;
+  min-width: 300px;
+  max-width: 400px;
+  background: rgba(7, 27, 51, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transform: translateX(120%);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+  opacity: 0;
+  font-family: 'Inter', sans-serif;
+}
+.havantage-toast.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+.havantage-toast-icon {
+  color: #00e676;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+.havantage-toast-content {
+  flex-grow: 1;
+}
+.havantage-toast-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin: 0;
+  color: #00e676;
+}
+.havantage-toast-message {
+  font-size: 0.85rem;
+  margin: 4px 0 0 0;
+  color: #e0e0e0;
+  line-height: 1.4;
+}
+.havantage-toast-close {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 0;
+  line-height: 1;
+  margin-top: 2px;
+}
+.havantage-toast-close:hover {
+  color: #fff;
+}
+`;
+
+const styleSheet = document.createElement("style");
+styleSheet.innerText = toastStyles;
+document.head.appendChild(styleSheet);
+
+// Function to show Toast Notification
+function showToast(title, message) {
+  let container = document.querySelector(".havantage-toast-container");
+  if (!container) {
+    container = document.createElement("div");
+    container.className = "havantage-toast-container";
+    document.body.appendChild(container);
+  }
+
+  const toast = document.createElement("div");
+  toast.className = "havantage-toast";
+  toast.innerHTML = `
+    <div class="havantage-toast-icon">✓</div>
+    <div class="havantage-toast-content">
+      <div class="havantage-toast-title">${title}</div>
+      <div class="havantage-toast-message">${message}</div>
+    </div>
+    <button class="havantage-toast-close">&times;</button>
+  `;
+
+  container.appendChild(toast);
+
+  // Trigger animation
+  setTimeout(() => {
+    toast.classList.add("show");
+  }, 10);
+
+  // Dismiss function
+  const dismiss = () => {
+    toast.classList.remove("show");
+    setTimeout(() => {
+      toast.remove();
+    }, 400);
+  };
+
+  toast.querySelector(".havantage-toast-close").addEventListener("click", dismiss);
+
+  // Auto-dismiss
+  setTimeout(dismiss, 4000);
+}
+
 function initFormHandler() {
   const forms = document.querySelectorAll("form[data-form]");
 
@@ -79,9 +195,29 @@ function initFormHandler() {
             throw new Error(payInitResult.error || "Failed to initialize payment gateway.");
           }
 
-          // Redirect to Paystack
-          window.location.href = payInitResult.authorization_url;
+          // Trigger registration success toast before redirecting
+          showToast("Registration Saved!", "Redirecting you to the Paystack checkout gateway...");
+          
+          setTimeout(() => {
+            window.location.href = payInitResult.authorization_url;
+          }, 1000);
           return;
+        }
+
+        // Toast Messages for general forms
+        if (formType === "contact") {
+          showToast("Message Sent!", "Thank you. Your message has been received.");
+        } else if (formType === "newsletter") {
+          showToast("Subscribed!", "You have successfully subscribed to our newsletter.");
+        } else if (formType === "consultation") {
+          const formTypeVal = data.form_type;
+          if (formTypeVal === "hire_talent") {
+            showToast("Request Received!", "We have received your talent request and will follow up shortly.");
+          } else if (formTypeVal === "join_talent_network") {
+            showToast("Profile Registered!", "Thank you for joining the Havantage talent network.");
+          } else {
+            showToast("Request Received!", "Your corporate support request has been submitted successfully.");
+          }
         }
 
         // Default Success Behavior: Show the success panel
