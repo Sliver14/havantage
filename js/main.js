@@ -36,6 +36,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Determine API endpoint
         let endpoint = `/api/${formType}`;
+        if (formType === "registration") {
+          endpoint = "/api/register";
+        }
         
         // Submit request
         const response = await fetch(endpoint, {
