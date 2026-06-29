@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+function initFormHandler() {
   const forms = document.querySelectorAll("form[data-form]");
 
   forms.forEach(form => {
@@ -120,4 +120,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initFormHandler);
+} else {
+  initFormHandler();
+}
