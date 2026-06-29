@@ -29,7 +29,7 @@ export default async function handler(req, res) {
       }
 
       await sql`
-        INSERT INTO talent_network_profiles (full_name, email, phone, current_role, interest_area, skills, portfolio, availability, job_type)
+        INSERT INTO talent_network_profiles (full_name, email, phone, job_title, interest_area, skills, portfolio, availability, job_type)
         VALUES (${full_name.trim()}, ${email.trim().toLowerCase()}, ${phone.trim()}, ${current_role.trim()}, ${interest_area.trim()}, ${skills.trim()}, ${portfolio || null}, ${availability.trim()}, ${job_type.trim()})
       `;
       return res.status(200).json({ success: true, message: "Profile registered in talent network successfully." });

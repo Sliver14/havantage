@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS talent_network_profiles (
     full_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     phone VARCHAR(50) NOT NULL,
-    current_role VARCHAR(255) NOT NULL,
+    job_title VARCHAR(255) NOT NULL,
     interest_area VARCHAR(255) NOT NULL,
     skills TEXT NOT NULL,
     portfolio TEXT,
