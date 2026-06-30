@@ -23,7 +23,7 @@ export async function sendNotificationEmail(subject, htmlContent) {
 
   const mailOptions = {
     from: `"Havantage Notifications" <${user}>`,
-    to: "silverchristopher12@gmail.com",
+    to: "info.havantage@gmail.com",
     subject: `[Havantage Form] ${subject}`,
     html: htmlContent
   };
