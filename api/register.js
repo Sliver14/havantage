@@ -1,4 +1,5 @@
 import { sql } from "./db.js";
+import { sendNotificationEmail } from "./email.js";
 
 // Helper function to generate a unique reference
 function generateReference() {
@@ -65,6 +66,24 @@ export default async function handler(req, res) {
     `;
 
     const registration = rows[0];
+
+    try {
+      await sendNotificationEmail(
+        `New Program Registration - ${full_name}`,
+        `<p>A new user has registered for a program.</p>
+         <p><strong>Name:</strong> ${full_name}</p>
+         <p><strong>Email:</strong> ${emailTrimmed}</p>
+         <p><strong>Phone:</strong> ${phone}</p>
+         <p><strong>Location:</strong> ${location}</p>
+         <p><strong>Program:</strong> ${program}</p>
+         <p><strong>Career Stage:</strong> ${career_stage}</p>
+         <p><strong>Preferred Format:</strong> ${actualFormat}</p>
+         <p><strong>Reason for Joining:</strong> ${actualReason}</p>
+         <p><strong>Payment Reference:</strong> ${registration.payment_reference}</p>`
+      );
+    } catch (e) {
+      console.error("Notification Email Error:", e);
+    }
 
     return res.status(200).json({
       success: true,

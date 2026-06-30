@@ -1,4 +1,5 @@
 import { sql } from "./db.js";
+import { sendNotificationEmail } from "./email.js";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -19,12 +20,28 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Invalid email format." });
     }
 
-    // Insert or ignore if duplicate
+    // Check if duplicate
+    const existing = await sql`
+      SELECT id FROM newsletter_subscribers WHERE email = ${emailTrimmed}
+    `;
+    if (existing.length > 0) {
+      return res.status(200).json({ success: true, message: "You are already subscribed to the newsletter!" });
+    }
+
     await sql`
       INSERT INTO newsletter_subscribers (email)
       VALUES (${emailTrimmed})
-      ON CONFLICT (email) DO NOTHING
     `;
+
+    try {
+      await sendNotificationEmail(
+        `New Newsletter Subscriber`,
+        `<p>A new user has subscribed to the newsletter.</p>
+         <p><strong>Email:</strong> ${emailTrimmed}</p>`
+      );
+    } catch (e) {
+      console.error("Notification Email Error:", e);
+    }
 
     return res.status(200).json({ success: true, message: "Subscribed to newsletter successfully." });
   } catch (error) {
