@@ -259,7 +259,18 @@ function initFormHandler() {
 }
 
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initFormHandler);
+  document.addEventListener("DOMContentLoaded", () => {
+    initFormHandler();
+    setupWhatsAppLinks();
+  });
 } else {
   initFormHandler();
+  setupWhatsAppLinks();
+}
+
+function setupWhatsAppLinks() {
+  document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp.com"]').forEach(link => {
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
+  });
 }
