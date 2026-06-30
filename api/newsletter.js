@@ -25,7 +25,7 @@ export default async function handler(req, res) {
       SELECT id FROM newsletter_subscribers WHERE email = ${emailTrimmed}
     `;
     if (existing.length > 0) {
-      return res.status(200).json({ success: true, message: "You are already subscribed to the newsletter!" });
+      return res.status(400).json({ error: "This email has already been subscribed." });
     }
 
     await sql`
